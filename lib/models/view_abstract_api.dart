@@ -7,6 +7,23 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 abstract class ViewAbstractApi<T> implements OnResponse<T> {
   T fromJson(Map<String, dynamic> json);
+
+  void fromJ() {
+    InstanceMirror instance_mirror = reflect(T);
+    var type = instanceMirror.type;
+    for (var v in type.declarations.values) {
+      var name = MirrorSystem.getName(v.simpleName);
+
+      if (v is VariableMirror) {
+        print(
+            "Variable: $name => S: ${v.isStatic}, P: ${v.isPrivate}, F: ${v.isFinal}, C: ${v.isConst}");
+      } else if (v is MethodMirror) {
+        print(
+            "Method: $name => S: ${v.isStatic}, P: ${v.isPrivate}, A: ${v.isAbstract}");
+      }
+    }
+  }
+
   String getTableNameApi();
   Map<String, String> getBodyExtenstionParams() => {};
 
