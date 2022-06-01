@@ -1,7 +1,7 @@
 name: flutter_view_controller
 description: A new Flutter package project.
+homepage: https://github.com/geaquzzil/flutter_view_controler
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
