@@ -1,7 +1,8 @@
 import 'dart:collection';
-import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-
+import 'package:json_annotation/json_annotation.dart';
+import 'package:build_runner/build_runner.dart';
+import 'package:json_serializable/json_serializable.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 abstract class ViewAbstractApi<T> implements OnResponse<T> {
@@ -22,9 +23,8 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
   }
 
   @override
-  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions) {
-    
-  }
+  void onServerFailureResponse(
+      ServerResponse sr, ServerActions serverActions) {}
   int iD = -1;
 
   Future<T> view(int iD) async {
@@ -37,8 +37,7 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
 
       return fromJson(convert.jsonDecode(response.body));
     } else if (response.statusCode == 401) {
-      
-      return onServer;
+      throw Exception('Failed to load album');
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
@@ -77,7 +76,7 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
   }
 }
 
-abstract class OnResponse<T extends ViewAbstractApi> {
+abstract class OnResponse<T> {
   void onServerNoMoreItems();
   void onServerResponseList(List<T> list);
   void onServerResponseAddEditDelete(List<T> list, ServerActions serverActions);
@@ -86,9 +85,15 @@ abstract class OnResponse<T extends ViewAbstractApi> {
   void onServerFailureResponse(ServerResponse sr, ServerActions serverActions);
 }
 
+@JsonSerializable()
 class ServerResponseMaster {
   ServerResponse? serverResponse;
   ServerResponseMaster();
+
+  factory ServerResponseMaster.fromJson(Map<String, dynamic> data) =>
+      _$ServerResponseMasterFromJson(data);
+
+  Map<String, dynamic> toJson() => _$ServerResponseMasterToJson(this);
 }
 
 enum ServerActions {
@@ -102,6 +107,7 @@ enum ServerActions {
   file
 }
 
+@JsonSerializable()
 class ServerResponse {
   int? activated;
   bool? permission;
@@ -109,7 +115,10 @@ class ServerResponse {
   bool? error;
   String? message;
   int? code;
+  factory ServerResponse.fromJson(Map<String, dynamic> data) =>
+      _$ServerResponseFromJson(data);
 
+  Map<String, dynamic> toJson() => _$ServerResponseToJson(this);
   ServerResponse();
   bool isAccountActivated() {
     return activated == 1;
