@@ -1,26 +1,30 @@
 import 'dart:collection';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+
+import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 abstract class ViewAbstractApi<T> {
   T fromJson(Map<String, dynamic> json);
   String getTableNameApi();
-  Map<String, String> getDefaultBody() => {};
+  Map<String, String> getBodyExtenstionParams() => {};
+
   Map<String, String> getBody(String action) {
     Map<String, String> mainBody = HashMap<String, String>();
-    mainBody.addAll(getDefaultBody());
-
-    return {
+    mainBody.addAll(getBodyExtenstionParams());
+    mainBody.addAll(getBodyCurrentAction(action));
+    Map<String, String> defaultBody = {
       "action": action,
       "table": getTableNameApi(),
     };
+    mainBody.addAll(defaultBody);
+    return mainBody;
   }
 
   int iD = -1;
 
   Future<T> view(int iD) async {
-    final response = await http.post(Uri.parse(URLS.BASE_URL),
+    var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
         headers: URLS.requestHeaders, body: getBody("view"));
 
     if (response.statusCode == 200) {
@@ -40,8 +44,9 @@ abstract class ViewAbstractApi<T> {
   }
 
   Future<List<T>> list(int count, int page) async {
-    final response = await http.post(Uri.parse(URLS.BASE_URL),
+    var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
         headers: URLS.requestHeaders, body: getBody("list"));
+
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
@@ -54,16 +59,26 @@ abstract class ViewAbstractApi<T> {
       throw Exception('Failed to load album');
     }
   }
+
+  HttpWithMiddleware getHttp() => HttpWithMiddleware.build(middlewares: [
+        HttpLogger(logLevel: LogLevel.BODY),
+      ]);
+
+  Map<String, String> getBodyCurrentAction(String action) {
+    if (action == "view") return {"<iD>": "621"};
+    return {};
+  }
 }
 
+class ServerResponse{
+  
+}
 class URLS {
-  static const String BASE_URL =
-      'https://www.saffoury.com/SaffouryPaper2/index.php';
+  static const String BASE_URL = 'http://saffoury.com/SaffouryPaper2/index.php';
 
   static const Map<String, String> requestHeaders = {
-    'Content-type': 'application/json',
     'Accept': 'application/json',
     'Authorization': '<Your token>',
-    'Accept-Encoding': 'gzip'
+    'Accept-Encoding': 'gzip',
   };
 }

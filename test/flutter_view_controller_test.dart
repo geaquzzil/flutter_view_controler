@@ -11,9 +11,10 @@ void main() {
     expect(calculator.addOne(-7), -6);
     expect(calculator.addOne(0), 1);
   });
-  test('test list', () {
+  test('test list', () async {
+    print("TEST Run");
     Product product = new Product();
-    product.list(2, 0);
+    await product.list(2, 0);
   });
 }
 
@@ -27,6 +28,6 @@ class Product extends ViewAbstractApi<Product> {
   @override
   String getTableNameApi() {
     // TODO: implement getTableNameApi
-    return "products";
+    return "orders";
   }
 }
