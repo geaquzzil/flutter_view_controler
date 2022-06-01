@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
-abstract class ViewAbstractApi<T> {
+abstract class ViewAbstractApi<T> implements OnResponse<T> {
   T fromJson(Map<String, dynamic> json);
   String getTableNameApi();
   Map<String, String> getBodyExtenstionParams() => {};
@@ -21,6 +21,10 @@ abstract class ViewAbstractApi<T> {
     return mainBody;
   }
 
+  @override
+  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions) {
+    
+  }
   int iD = -1;
 
   Future<T> view(int iD) async {
@@ -32,6 +36,9 @@ abstract class ViewAbstractApi<T> {
       // then parse the JSON.
 
       return fromJson(convert.jsonDecode(response.body));
+    } else if (response.statusCode == 401) {
+      
+      return onServer;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
@@ -70,9 +77,53 @@ abstract class ViewAbstractApi<T> {
   }
 }
 
-class ServerResponse{
-  
+abstract class OnResponse<T extends ViewAbstractApi> {
+  void onServerNoMoreItems();
+  void onServerResponseList(List<T> list);
+  void onServerResponseAddEditDelete(List<T> list, ServerActions serverActions);
+  void onServerResponseSingleObject(T object, ServerActions serverAction);
+  void onServerFailure(Object o);
+  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions);
 }
+
+class ServerResponseMaster {
+  ServerResponse? serverResponse;
+  ServerResponseMaster();
+}
+
+enum ServerActions {
+  print,
+  notification,
+  list,
+  view,
+  add,
+  edit,
+  delete_action,
+  file
+}
+
+class ServerResponse {
+  int? activated;
+  bool? permission;
+  bool? login;
+  bool? error;
+  String? message;
+  int? code;
+
+  ServerResponse();
+  bool isAccountActivated() {
+    return activated == 1;
+  }
+
+  bool? isAccountLoggedIn() {
+    return login;
+  }
+
+  bool? isAccountHasPermission() {
+    return permission;
+  }
+}
+
 class URLS {
   static const String BASE_URL = 'http://saffoury.com/SaffouryPaper2/index.php';
 
