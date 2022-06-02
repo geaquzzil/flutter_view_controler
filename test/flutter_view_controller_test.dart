@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_view_controller/encyptions/AesHelper.dart';
+import 'package:flutter_view_controller/encyptions/encrypt.dart';
 
 import 'package:flutter_view_controller/flutter_view_controller.dart';
 import 'package:flutter_view_controller/models/servers/server_helpers.dart';
@@ -30,10 +32,16 @@ void main() {
         }, onServerFailure: (message) {
           //...
         }, onServerFailureResponse: (message) {
-          expect((message as ServerResponse).isAuthError(), true);
+          expect((message as ServerResponse).isAccountLoggedIn(), false);
           //...
         }));
     print(product?.toString());
+  });
+  test('encryption', () async {
+    expect(
+        AesHelper.encrypt(
+            "qusasafo12345&!#", "HIIAMANANDROIDUSERFROMSAFFOURYCOMPANY"),
+        "+mXm4rs0AuZvxFi8Di1Ryj/pqu2yZjK3Gx4wIYEi0QCfDoJn1hB3Wl4onJvvCh1RIcfJP5IbMVdnJW1mpnzW7A==");
   });
 }
 

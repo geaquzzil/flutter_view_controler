@@ -14,7 +14,6 @@ class URLS {
 
   static const Map<String, String> requestHeaders = {
     'Accept': 'application/json',
-    'Authorization': '<Your token>',
     'Accept-Encoding': 'gzip',
   };
 }

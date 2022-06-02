@@ -1,5 +1,7 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
+import 'package:flutter_view_controller/encyptions/AesHelper.dart';
+import 'package:flutter_view_controller/encyptions/encrypt.dart';
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
@@ -35,7 +37,7 @@ abstract class ViewAbstractApi<T> {
   }
 
   Map<String, String> getBodyExtenstionParams() => {};
-  
+
   Map<String, String> getBodyCurrentActionASC(ServerActions? action) {
     Map<String, String> map = HashMap<String, String>();
 
@@ -49,11 +51,25 @@ abstract class ViewAbstractApi<T> {
     return mainBody;
   }
 
+  Map<String, String> getHeadersExtenstion() {
+    Map<String, String> defaultHeaders = HashMap<String, String>();
+    defaultHeaders['Auth'] =
+        Encryter.encypt("HIIAMANANDROIDUSERFROMSAFFOURYCOMPANY");
+    return defaultHeaders;
+  }
+
+  Map<String, String> getHeaders() {
+    Map<String, String> defaultHeaders = HashMap<String, String>();
+    defaultHeaders.addAll(URLS.requestHeaders);
+    defaultHeaders.addAll(getHeadersExtenstion());
+    return defaultHeaders;
+  }
+
   Future<Response?> getRespones(
       {ServerActions? serverActions, OnResponseCallback? onResponse}) async {
     try {
       return await getHttp().post(Uri.parse(URLS.BASE_URL),
-          headers: URLS.requestHeaders, body: getBody(serverActions));
+          headers: getHeaders(), body: getBody(serverActions));
     } on Exception catch (e) {
       // Display an alert, no internet
       onResponse?.onServerFailure(e);
