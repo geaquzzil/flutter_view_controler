@@ -77,8 +77,10 @@ abstract class ViewAbstractApi<T> {
     }
   }
 
-  Future<T> add() async {
-    throw Exception('TODO');
+  Future<T?> add({OnResponseCallback? onResponse}) async {
+    var response = await getRespones(
+        onResponse: onResponse, serverActions: ServerActions.add);
+    if (response == null) return null;
   }
 
   Future<List<T>> list(int count, int page) async {
@@ -114,6 +116,13 @@ abstract class ViewAbstractApi<T> {
     String? table = getTableNameApi();
     if (table != null) {
       mainBody['table'] = table;
+    }
+    switch (action) {
+      case ServerActions.add:
+        mainBody['data'] = convert.jsonEncode(toJson());
+        break;
+      default:
+        break;
     }
 
     return mainBody;

@@ -20,12 +20,16 @@ class ServerResponse {
     return activated == 1;
   }
 
-  bool? isAccountLoggedIn() {
-    return login;
+  bool isAccountLoggedIn() {
+    return login ?? false;
   }
 
-  bool? isAccountHasPermission() {
-    return permission;
+  bool isAccountHasPermission() {
+    return permission ?? false;
   }
-  bool? isAuthError() {return message=="Authorization error";}
+
+  bool isAuthError() {
+    if (message == null) return false;
+    return message == "Authorization error";
+  }
 }

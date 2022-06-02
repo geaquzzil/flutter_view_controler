@@ -25,6 +25,7 @@ void main() {
           expect((message as ServerResponse).isAuthError(), true);
           //...
         }));
+    print(product?.toString());
   });
 }
 
