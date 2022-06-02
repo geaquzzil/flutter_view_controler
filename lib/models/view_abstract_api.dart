@@ -1,28 +1,35 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:build_runner/build_runner.dart';
 import 'package:json_serializable/json_serializable.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
+import 'servers/server_response.dart';
+
 abstract class ViewAbstractApi<T> implements OnResponse<T> {
-  T fromJson(Map<String, dynamic> json);
-
-  void fromJ() {
-    InstanceMirror instance_mirror = reflect(T);
-    var type = instanceMirror.type;
-    for (var v in type.declarations.values) {
-      var name = MirrorSystem.getName(v.simpleName);
-
-      if (v is VariableMirror) {
-        print(
-            "Variable: $name => S: ${v.isStatic}, P: ${v.isPrivate}, F: ${v.isFinal}, C: ${v.isConst}");
-      } else if (v is MethodMirror) {
-        print(
-            "Method: $name => S: ${v.isStatic}, P: ${v.isPrivate}, A: ${v.isAbstract}");
-      }
-    }
+  @override
+  void onServerFailure(Object o) {
+    // TODO: implement onServerFailure
   }
+  @override
+  void onServerNoMoreItems() {
+    // TODO: implement onServerNoMoreItems
+  }
+  @override
+  void onServerResponseAddEditDelete(
+      List<T> list, ServerActions serverActions) {
+    // TODO: implement onServerResponseAddEditDelete
+  }
+  @override
+  void onServerResponseList(List<T> list) {
+    // TODO: implement onServerResponseList
+  }
+  @override
+  void onServerResponseSingleObject(T object, ServerActions serverAction) {
+    // TODO: implement onServerResponseSingleObject
+  }
+  T fromJson(Map<String, dynamic> json);
 
   String getTableNameApi();
   Map<String, String> getBodyExtenstionParams() => {};
@@ -102,17 +109,6 @@ abstract class OnResponse<T> {
   void onServerFailureResponse(ServerResponse sr, ServerActions serverActions);
 }
 
-@JsonSerializable()
-class ServerResponseMaster {
-  ServerResponse? serverResponse;
-  ServerResponseMaster();
-
-  factory ServerResponseMaster.fromJson(Map<String, dynamic> data) =>
-      _$ServerResponseMasterFromJson(data);
-
-  Map<String, dynamic> toJson() => _$ServerResponseMasterToJson(this);
-}
-
 enum ServerActions {
   print,
   notification,
@@ -122,32 +118,6 @@ enum ServerActions {
   edit,
   delete_action,
   file
-}
-
-@JsonSerializable()
-class ServerResponse {
-  int? activated;
-  bool? permission;
-  bool? login;
-  bool? error;
-  String? message;
-  int? code;
-  factory ServerResponse.fromJson(Map<String, dynamic> data) =>
-      _$ServerResponseFromJson(data);
-
-  Map<String, dynamic> toJson() => _$ServerResponseToJson(this);
-  ServerResponse();
-  bool isAccountActivated() {
-    return activated == 1;
-  }
-
-  bool? isAccountLoggedIn() {
-    return login;
-  }
-
-  bool? isAccountHasPermission() {
-    return permission;
-  }
 }
 
 class URLS {
