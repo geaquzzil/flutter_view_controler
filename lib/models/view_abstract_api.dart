@@ -4,10 +4,13 @@ import 'package:flutter_view_controller/models/servers/server_response_master.da
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
+import 'servers/server_helpers.dart';
+
 abstract class ViewAbstractApi<T> {
   int iD = -1;
   T fromJson(Map<String, dynamic> json);
   Map<String, dynamic> toJson();
+
   String? getTableNameApi();
   String? getCustomAction() {
     return null;
@@ -22,16 +25,22 @@ abstract class ViewAbstractApi<T> {
   }
 
   Map<String, String> getBodyExtenstionParams() => {};
+  Map<String, String> getBodyCurrentActionASC(ServerActions? action) {
+    switch (action) {
+      case ServerActions.list:
+        Map<String, String> map = HashMap<String, String>();
+        //  map['']
+        return map;
+      default:
+        return {};
+    }
+  }
 
   Map<String, String> getBody(ServerActions? action) {
     Map<String, String> mainBody = HashMap<String, String>();
     mainBody.addAll(getBodyExtenstionParams());
     mainBody.addAll(getBodyCurrentAction(action));
-    Map<String, String> defaultBody = {
-      "action": action.toString().split('.').last,
-      "table": getTableNameApi(),
-    };
-    mainBody.addAll(defaultBody);
+    mainBody.addAll(getBodyCurrentActionASC(action));
     return mainBody;
   }
 
@@ -93,45 +102,20 @@ abstract class ViewAbstractApi<T> {
         HttpLogger(logLevel: LogLevel.BODY),
       ]);
 
-  Map<String, dynamic> getBodyCurrentAction(ServerActions? action) {
-    Map<String, dynamic> mainBody = HashMap();
+  Map<String, String> getBodyCurrentAction(ServerActions? action) {
+    Map<String, String> mainBody = HashMap();
     String? customAction = getCustomAction();
     mainBody['action'] = customAction ?? action.toString().split(".").last;
-    mainBody['objectTables'] = requireObjects();
+    mainBody['objectTables'] = convert.jsonEncode(requireObjects());
     mainBody['detailTables'] = requireObjectsList() == null
         ? convert.jsonEncode([])
         : convert.jsonEncode(requireObjectsList());
+
+    String? table = getTableNameApi();
+    if (table != null) {
+      mainBody['table'] = table;
+    }
+
     return mainBody;
   }
-}
-
-class OnResponseCallback {
-  final void Function() onServerNoMoreItems;
-  final void Function(dynamic o) onServerFailure;
-  final void Function(dynamic o) onServerFailureResponse;
-  OnResponseCallback(
-      {required this.onServerNoMoreItems,
-      required this.onServerFailure,
-      required this.onServerFailureResponse});
-}
-
-enum ServerActions {
-  print,
-  notification,
-  list,
-  view,
-  add,
-  edit,
-  delete_action,
-  file
-}
-
-class URLS {
-  static const String BASE_URL = 'http://saffoury.com/SaffouryPaper2/index.php';
-
-  static const Map<String, String> requestHeaders = {
-    'Accept': 'application/json',
-    'Authorization': '<Your token>',
-    'Accept-Encoding': 'gzip',
-  };
 }

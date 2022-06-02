@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_view_controller/flutter_view_controller.dart';
+import 'package:flutter_view_controller/models/servers/server_helpers.dart';
 import 'package:flutter_view_controller/models/servers/server_response.dart';
 
 import 'package:flutter_view_controller/models/view_abstract_api.dart';
@@ -39,7 +40,7 @@ class Product extends ViewAbstractApi<Product> {
     // TODO: implement getTableNameApi
     return "orders";
   }
-  
+
   @override
   Map<String, dynamic> toJson() {
     // TODO: implement toJson
