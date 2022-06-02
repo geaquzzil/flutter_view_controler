@@ -1,75 +1,61 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
+import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 import 'servers/server_response.dart';
 
-abstract class ViewAbstractApi<T> implements OnResponse<T> {
-  @override
-  void onServerFailure(Object o) {
-    // TODO: implement onServerFailure
-  }
-  @override
-  void onServerNoMoreItems() {
-    // TODO: implement onServerNoMoreItems
-  }
-  @override
-  void onServerResponseAddEditDelete(
-      List<T> list, ServerActions serverActions) {
-    // TODO: implement onServerResponseAddEditDelete
-  }
-  @override
-  void onServerResponseList(List<T> list) {
-    // TODO: implement onServerResponseList
-  }
-  @override
-  void onServerResponseSingleObject(T object, ServerActions serverAction) {
-    // TODO: implement onServerResponseSingleObject
-  }
+abstract class ViewAbstractApi<T> {
   T fromJson(Map<String, dynamic> json);
 
   String getTableNameApi();
   Map<String, String> getBodyExtenstionParams() => {};
 
-  Map<String, String> getBody(String action) {
+  Map<String, String> getBody(ServerActions? action) {
     Map<String, String> mainBody = HashMap<String, String>();
     mainBody.addAll(getBodyExtenstionParams());
     mainBody.addAll(getBodyCurrentAction(action));
     Map<String, String> defaultBody = {
-      "action": action,
+      "action": action.toString().split('.').last,
       "table": getTableNameApi(),
     };
     mainBody.addAll(defaultBody);
     return mainBody;
   }
 
-  @override
-  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions) {
-    print(sr.toJson());
-  }
-
   int iD = -1;
 
-  Future<T> view(int iD) async {
-    var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
-        headers: URLS.requestHeaders, body: getBody("view"));
+  Future<Response?> getRespones(
+      {ServerActions? serverActions, OnResponseCallback? onResponse}) async {
+    try {
+      return await getHttp().post(Uri.parse(URLS.BASE_URL),
+          headers: URLS.requestHeaders, body: getBody(serverActions));
+    } on Exception catch (e) {
+      // Display an alert, no internet
+      onResponse?.onServerFailure(e);
+      return null;
+    } catch (err) {
+      return null;
+    }
+  }
 
+  Future<T?> view(int iD, {OnResponseCallback? onResponse}) async {
+    var response = await getRespones(
+        onResponse: onResponse, serverActions: ServerActions.view);
+    if (response == null) return null;
     if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-
       return fromJson(convert.jsonDecode(response.body));
     } else if (response.statusCode == 401) {
       ServerResponseMaster serverResponse =
           ServerResponseMaster.fromJson(convert.jsonDecode(response.body));
-      onServerFailureResponse(
-          serverResponse.serverResponse, ServerActions.view);
-      throw Exception('Failed to load album');
+      onResponse?.onServerFailureResponse(serverResponse.serverResponse);
+      //throw Exception('Failed to load album');
+      return null;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load album');
+      return null;
     }
   }
 
@@ -79,7 +65,7 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
 
   Future<List<T>> list(int count, int page) async {
     var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
-        headers: URLS.requestHeaders, body: getBody("list"));
+        headers: URLS.requestHeaders, body: getBody(ServerActions.list));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -98,19 +84,20 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
         HttpLogger(logLevel: LogLevel.BODY),
       ]);
 
-  Map<String, String> getBodyCurrentAction(String action) {
-    if (action == "view") return {"<iD>": "621"};
+  Map<String, String> getBodyCurrentAction(ServerActions? action) {
+    if (action == ServerActions.view) return {"<iD>": "621"};
     return {};
   }
 }
 
-abstract class OnResponse<T> {
-  void onServerNoMoreItems();
-  void onServerResponseList(List<T> list);
-  void onServerResponseAddEditDelete(List<T> list, ServerActions serverActions);
-  void onServerResponseSingleObject(T object, ServerActions serverAction);
-  void onServerFailure(Object o);
-  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions);
+class OnResponseCallback {
+  final void Function() onServerNoMoreItems;
+  final void Function(dynamic o) onServerFailure;
+  final void Function(dynamic o) onServerFailureResponse;
+  OnResponseCallback(
+      {required this.onServerNoMoreItems,
+      required this.onServerFailure,
+      required this.onServerFailureResponse});
 }
 
 enum ServerActions {

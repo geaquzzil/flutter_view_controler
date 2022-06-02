@@ -27,4 +27,5 @@ class ServerResponse {
   bool? isAccountHasPermission() {
     return permission;
   }
+  bool? isAuthError() {return message=="Authorization error";}
 }

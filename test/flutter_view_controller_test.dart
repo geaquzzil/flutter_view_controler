@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_view_controller/flutter_view_controller.dart';
+import 'package:flutter_view_controller/models/servers/server_response.dart';
 
 import 'package:flutter_view_controller/models/view_abstract_api.dart';
 
@@ -13,8 +14,16 @@ void main() {
   });
   test('test list', () async {
     print("TEST Run");
-    Product product = new Product();
-    await product.view(2);
+    Product? product = Product();
+    product = await product.view(2,
+        onResponse: OnResponseCallback(onServerNoMoreItems: () {
+          //...
+        }, onServerFailure: (message) {
+          //...
+        }, onServerFailureResponse: (message) {
+          expect((message as ServerResponse).isAuthError(), true);
+          //...
+        }));
   });
 }
 
