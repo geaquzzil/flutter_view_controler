@@ -35,6 +35,7 @@ abstract class ViewAbstractApi<T> {
   }
 
   Map<String, String> getBodyExtenstionParams() => {};
+  
   Map<String, String> getBodyCurrentActionASC(ServerActions? action) {
     Map<String, String> map = HashMap<String, String>();
 
