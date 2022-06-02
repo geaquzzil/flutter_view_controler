@@ -26,7 +26,7 @@ void main() {
     // final declarations = aMirror.declarations;
     // print(abMirror.type.typeArguments[0].reflectedType); // Prints 'B'.
     // print(abMirror.type.reflectedTypeArguments[0] == B); // Prints 'true'.
-    product = await product.view(2,
+    product = await product.viewCall(2,
         onResponse: OnResponseCallback(onServerNoMoreItems: () {
           //...
         }, onServerFailure: (message) {

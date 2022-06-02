@@ -17,11 +17,11 @@ class Reflector extends Reflectable {
 
 const reflector = const Reflector();
 
-// @reflector
+@reflector
 abstract class ViewAbstractApi<T> {
   int iD = -1;
-  T fromJson(Map<String, dynamic> json);
-  Map<String, dynamic> toJson();
+  T fromJsonViewAbstract(Map<String, dynamic> json);
+  Map<String, dynamic> toJsonViewAbstract();
 
   String? getTableNameApi();
   String? getCustomAction() {
@@ -79,12 +79,12 @@ abstract class ViewAbstractApi<T> {
     }
   }
 
-  Future<T?> view(int iD, {OnResponseCallback? onResponse}) async {
+  Future<T?> viewCall(int iD, {OnResponseCallback? onResponse}) async {
     var response = await getRespones(
         onResponse: onResponse, serverActions: ServerActions.view);
     if (response == null) return null;
     if (response.statusCode == 200) {
-      return fromJson(convert.jsonDecode(response.body));
+      return fromJsonViewAbstract(convert.jsonDecode(response.body));
     } else if (response.statusCode == 401) {
       ServerResponseMaster serverResponse =
           ServerResponseMaster.fromJson(convert.jsonDecode(response.body));
@@ -98,13 +98,13 @@ abstract class ViewAbstractApi<T> {
     }
   }
 
-  Future<T?> add({OnResponseCallback? onResponse}) async {
+  Future<T?> addCall({OnResponseCallback? onResponse}) async {
     var response = await getRespones(
         onResponse: onResponse, serverActions: ServerActions.add);
     if (response == null) return null;
   }
 
-  Future<List<T>> list(int count, int page) async {
+  Future<List<T>> listCall(int count, int page) async {
     var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
         headers: URLS.requestHeaders, body: getBody(ServerActions.list));
 
@@ -141,7 +141,7 @@ abstract class ViewAbstractApi<T> {
     switch (action) {
       case ServerActions.add:
         //TODO multiple add
-        mainBody['data'] = convert.jsonEncode(toJson());
+        mainBody['data'] = convert.jsonEncode(toJsonViewAbstract());
         break;
       case ServerActions.view:
       case ServerActions.delete_action:

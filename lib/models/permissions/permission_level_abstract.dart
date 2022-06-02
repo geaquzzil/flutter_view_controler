@@ -1,7 +1,11 @@
 import 'package:flutter_view_controller/models/permissions/permission_action_abstract.dart';
 import 'package:collection/collection.dart';
+import 'package:json_annotation/json_annotation.dart';
 import '../view_abstract.dart';
 
+part 'permission_level_abstract.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 abstract class PermissionLevelAbstract
     extends ViewAbstract<PermissionLevelAbstract> {
   String? userlevelname;
@@ -9,7 +13,7 @@ abstract class PermissionLevelAbstract
   static Map<String, PermissionActionAbstract> hashMapOfPermissionTableAction =
       {};
   List<PermissionActionAbstract>? permissions_levels;
-  PermissionLevelAbstract() {
+  PermissionLevelAbstract() : super() {
     userlevelname = '-';
     permissions_levels = List<PermissionActionAbstract>.empty();
   }
@@ -61,4 +65,9 @@ abstract class PermissionLevelAbstract
   bool isGeneralClient();
 
   bool isGeneralEmployee();
+
+  factory PermissionLevelAbstract.fromJson(Map<String, dynamic> data) =>
+      _$PermissionLevelAbstractFromJson(data);
+
+  Map<String, dynamic> toJson() => _$PermissionLevelAbstractToJson(this);
 }
