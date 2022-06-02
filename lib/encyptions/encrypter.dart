@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/export.dart';
 
-class Encryter {
+class Encriptions {
   static const String ENCRYPT_KEY = "qusasafo12345&!#";
 
   static Uint8List _processBlocks(BlockCipher cipher, Uint8List inp) {

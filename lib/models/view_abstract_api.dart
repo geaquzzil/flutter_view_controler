@@ -1,7 +1,7 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
 import 'package:flutter_view_controller/encyptions/AesHelper.dart';
-import 'package:flutter_view_controller/encyptions/encrypt.dart';
+import 'package:flutter_view_controller/encyptions/encrypter.dart';
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
@@ -17,7 +17,7 @@ class Reflector extends Reflectable {
 
 const reflector = const Reflector();
 
-@reflector
+// @reflector
 abstract class ViewAbstractApi<T> {
   int iD = -1;
   T fromJson(Map<String, dynamic> json);
@@ -54,7 +54,7 @@ abstract class ViewAbstractApi<T> {
   Map<String, String> getHeadersExtenstion() {
     Map<String, String> defaultHeaders = HashMap<String, String>();
     defaultHeaders['Auth'] =
-        Encryter.encypt("HIIAMANANDROIDUSERFROMSAFFOURYCOMPANY");
+        Encriptions.encypt("HIIAMANANDROIDUSERFROMSAFFOURYCOMPANY");
     return defaultHeaders;
   }
 
