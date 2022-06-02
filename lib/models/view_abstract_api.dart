@@ -1,8 +1,6 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
-
-import 'package:build_runner/build_runner.dart';
-import 'package:json_serializable/json_serializable.dart';
+import 'package:flutter_view_controller/models/servers/server_response_master.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 import 'servers/server_response.dart';
@@ -47,8 +45,10 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
   }
 
   @override
-  void onServerFailureResponse(
-      ServerResponse sr, ServerActions serverActions) {}
+  void onServerFailureResponse(ServerResponse sr, ServerActions serverActions) {
+    print(sr.toJson());
+  }
+
   int iD = -1;
 
   Future<T> view(int iD) async {
@@ -61,6 +61,10 @@ abstract class ViewAbstractApi<T> implements OnResponse<T> {
 
       return fromJson(convert.jsonDecode(response.body));
     } else if (response.statusCode == 401) {
+      ServerResponseMaster serverResponse =
+          ServerResponseMaster.fromJson(convert.jsonDecode(response.body));
+      onServerFailureResponse(
+          serverResponse.serverResponse, ServerActions.view);
       throw Exception('Failed to load album');
     } else {
       // If the server did not return a 200 OK response,

@@ -14,7 +14,7 @@ void main() {
   test('test list', () async {
     print("TEST Run");
     Product product = new Product();
-    await product.list(2, 0);
+    await product.view(2);
   });
 }
 
