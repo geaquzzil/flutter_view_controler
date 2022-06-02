@@ -4,12 +4,23 @@ import 'package:flutter_view_controller/models/servers/server_response_master.da
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 
-import 'servers/server_response.dart';
-
 abstract class ViewAbstractApi<T> {
+  int iD = -1;
   T fromJson(Map<String, dynamic> json);
+  Map<String, dynamic> toJson();
+  String? getTableNameApi();
+  String? getCustomAction() {
+    return null;
+  }
 
-  String getTableNameApi();
+  bool requireObjects() {
+    return true;
+  }
+
+  List<String>? requireObjectsList() {
+    return null;
+  }
+
   Map<String, String> getBodyExtenstionParams() => {};
 
   Map<String, String> getBody(ServerActions? action) {
@@ -23,8 +34,6 @@ abstract class ViewAbstractApi<T> {
     mainBody.addAll(defaultBody);
     return mainBody;
   }
-
-  int iD = -1;
 
   Future<Response?> getRespones(
       {ServerActions? serverActions, OnResponseCallback? onResponse}) async {
@@ -84,9 +93,15 @@ abstract class ViewAbstractApi<T> {
         HttpLogger(logLevel: LogLevel.BODY),
       ]);
 
-  Map<String, String> getBodyCurrentAction(ServerActions? action) {
-    if (action == ServerActions.view) return {"<iD>": "621"};
-    return {};
+  Map<String, dynamic> getBodyCurrentAction(ServerActions? action) {
+    Map<String, dynamic> mainBody = HashMap();
+    String? customAction = getCustomAction();
+    mainBody['action'] = customAction ?? action.toString().split(".").last;
+    mainBody['objectTables'] = requireObjects();
+    mainBody['detailTables'] = requireObjectsList() == null
+        ? convert.jsonEncode([])
+        : convert.jsonEncode(requireObjectsList());
+    return mainBody;
   }
 }
 

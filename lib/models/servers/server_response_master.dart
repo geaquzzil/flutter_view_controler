@@ -1,3 +1,4 @@
+import 'package:flutter_view_controller/models/view_abstract_api.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'server_response.dart';

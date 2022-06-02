@@ -39,4 +39,10 @@ class Product extends ViewAbstractApi<Product> {
     // TODO: implement getTableNameApi
     return "orders";
   }
+  
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }
