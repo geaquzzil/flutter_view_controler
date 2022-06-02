@@ -3,9 +3,19 @@ import 'dart:convert' as convert;
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
+import 'package:reflectable/reflectable.dart';
 
 import 'servers/server_helpers.dart';
 
+// Annotate with this class to enable reflection.
+class Reflector extends Reflectable {
+  const Reflector()
+      : super(invokingCapability); // Request the capability to invoke methods.
+}
+
+const reflector = const Reflector();
+
+@reflector
 abstract class ViewAbstractApi<T> {
   int iD = -1;
   T fromJson(Map<String, dynamic> json);
@@ -26,21 +36,15 @@ abstract class ViewAbstractApi<T> {
 
   Map<String, String> getBodyExtenstionParams() => {};
   Map<String, String> getBodyCurrentActionASC(ServerActions? action) {
-    switch (action) {
-      case ServerActions.list:
-        Map<String, String> map = HashMap<String, String>();
-        //  map['']
-        return map;
-      default:
-        return {};
-    }
+    Map<String, String> map = HashMap<String, String>();
+
+    return map;
   }
 
   Map<String, String> getBody(ServerActions? action) {
     Map<String, String> mainBody = HashMap<String, String>();
     mainBody.addAll(getBodyExtenstionParams());
     mainBody.addAll(getBodyCurrentAction(action));
-    mainBody.addAll(getBodyCurrentActionASC(action));
     return mainBody;
   }
 
@@ -119,7 +123,15 @@ abstract class ViewAbstractApi<T> {
     }
     switch (action) {
       case ServerActions.add:
+        //TODO multiple add
         mainBody['data'] = convert.jsonEncode(toJson());
+        break;
+      case ServerActions.view:
+      case ServerActions.delete_action:
+        mainBody['<iD>'] = iD.toString();
+        break;
+      case ServerActions.list:
+        mainBody.addAll(getBodyCurrentActionASC(action));
         break;
       default:
         break;
