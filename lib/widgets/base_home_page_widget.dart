@@ -10,7 +10,7 @@ import 'base_drawer.dart';
 
 class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
   List<T> drawerItems;
-  
+
   BaseHomePage({Key? key, required this.drawerItems}) : super(key: key);
 
   @override

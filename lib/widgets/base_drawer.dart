@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/widgets/responsive_size_layout/home_large_tablet.dart';
+import 'package:flutter_view_controller/widgets/responsive_size_layout/home_mobile_page.dart';
+import 'package:flutter_view_controller/widgets/responsive_size_layout/home_small_tablet_page.dart';
 
 import '../models/view_abstract.dart';
 import '../view_generator_helper.dart';
+
+const mobileWidth = 599;
+const foldableSmallTablet = 839;
+const largeTablet = 840;
 
 class DrawerPage extends StatefulWidget {
   List<ViewAbstract> drawerItems;
@@ -14,15 +21,17 @@ class DrawerPage extends StatefulWidget {
 class _DrawerPage extends State<DrawerPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: const Center(
-          child: Text("test page"),
-        ),
-        drawer: ViewHelper.getDrawer(context, widget.drawerItems),
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text("This is a test"),
-        ));
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < mobileWidth) {
+          return HomeMobilePage(drawerItems: widget.drawerItems);
+        } else if (constraints.maxWidth > mobileWidth &&
+            constraints.maxWidth < foldableSmallTablet) {
+          return HomeSmallTabletPage(drawerItems: widget.drawerItems);
+        } else {
+          return HomeLargeTabletPage(drawerItems: widget.drawerItems);
+        }
+      },
+    );
   }
 }
