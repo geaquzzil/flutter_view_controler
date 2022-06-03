@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
@@ -112,9 +111,9 @@ class Encriptions {
     final ParametersWithIV<KeyParameter> ivParams =
         ParametersWithIV<KeyParameter>(
             KeyParameter(Uint8List.fromList(utf8.encode(ENCRYPT_KEY))), _iv);
-    final PaddedBlockCipherParameters<ParametersWithIV<KeyParameter>, Null>
+    final PaddedBlockCipherParameters<ParametersWithIV<KeyParameter>, void>
         paddingParams =
-        PaddedBlockCipherParameters<ParametersWithIV<KeyParameter>, Null>(
+        PaddedBlockCipherParameters<ParametersWithIV<KeyParameter>, void>(
             ivParams, null);
 
     final PaddedBlockCipherImpl paddedCipher =

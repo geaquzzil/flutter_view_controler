@@ -6,16 +6,16 @@ import '../view_abstract.dart';
 part 'permission_level_abstract.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-abstract class PermissionLevelAbstract
-    extends ViewAbstract<PermissionLevelAbstract> {
+abstract class PermissionLevelAbstract<T extends PermissionActionAbstract>
+    extends ViewAbstract<T> {
   String? userlevelname;
 
   static Map<String, PermissionActionAbstract> hashMapOfPermissionTableAction =
       {};
-  List<PermissionActionAbstract>? permissions_levels;
+  List<T>? permissions_levels;
   PermissionLevelAbstract() : super() {
     userlevelname = '-';
-    permissions_levels = List<PermissionActionAbstract>.empty();
+    permissions_levels = List<T>.empty();
   }
 
   static bool containsStaticKey(String key) {
@@ -65,6 +65,8 @@ abstract class PermissionLevelAbstract
   bool isGeneralClient();
 
   bool isGeneralEmployee();
+
+  
 
   factory PermissionLevelAbstract.fromJson(Map<String, dynamic> data) =>
       _$PermissionLevelAbstractFromJson(data);

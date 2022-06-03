@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:convert' as convert;
-import 'package:flutter_view_controller/encyptions/AesHelper.dart';
 import 'package:flutter_view_controller/encyptions/encrypter.dart';
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
 import 'package:http/http.dart';
@@ -15,7 +14,7 @@ class Reflector extends Reflectable {
       : super(invokingCapability); // Request the capability to invoke methods.
 }
 
-const reflector = const Reflector();
+const reflector = Reflector();
 
 @reflector
 abstract class ViewAbstractApi<T> {
@@ -102,6 +101,7 @@ abstract class ViewAbstractApi<T> {
     var response = await getRespones(
         onResponse: onResponse, serverActions: ServerActions.add);
     if (response == null) return null;
+    return null;
   }
 
   Future<List<T>> listCall(int count, int page) async {
@@ -113,7 +113,7 @@ abstract class ViewAbstractApi<T> {
       // then parse the JSON.
 
       Iterable l = convert.jsonDecode(response.body);
-      return List<T>.from(l.map((model) => fromJson(model)));
+      return List<T>.from(l.map((model) => fromJsonViewAbstract(model)));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

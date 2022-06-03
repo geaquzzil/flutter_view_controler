@@ -1,13 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_view_controller/encyptions/AesHelper.dart';
-import 'package:flutter_view_controller/encyptions/encrypter.dart';
 
 import 'package:flutter_view_controller/flutter_view_controller.dart';
 import 'package:flutter_view_controller/models/servers/server_helpers.dart';
 import 'package:flutter_view_controller/models/servers/server_response.dart';
 
 import 'package:flutter_view_controller/models/view_abstract_api.dart';
-import 'package:reflectable/reflectable.dart';
 
 import 'flutter_view_controller_test.reflectable.dart';
 
@@ -47,11 +44,6 @@ void main() {
 
 @reflector
 class Product extends ViewAbstractApi<Product> {
-  @override
-  Product fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
-  }
 
   @override
   String getTableNameApi() {
@@ -59,9 +51,17 @@ class Product extends ViewAbstractApi<Product> {
     return "orders";
   }
 
+  
+  
   @override
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
+  Product fromJsonViewAbstract(Map<String, dynamic> json) {
+    // TODO: implement fromJsonViewAbstract
+    throw UnimplementedError();
+  }
+  
+  @override
+  Map<String, dynamic> toJsonViewAbstract() {
+    // TODO: implement toJsonViewAbstract
     throw UnimplementedError();
   }
 

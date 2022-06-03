@@ -5,8 +5,7 @@ import '../view_abstract.dart';
 part 'permission_action_abstract.g.dart';
 
 @JsonSerializable()
-abstract class PermissionActionAbstract
-    extends ViewAbstract<PermissionActionAbstract> {
+class PermissionActionAbstract extends ViewAbstract<PermissionActionAbstract> {
   String? table_name;
   int? print;
   int? notification;
@@ -22,4 +21,19 @@ abstract class PermissionActionAbstract
       _$PermissionActionAbstractFromJson(data);
 
   Map<String, dynamic> toJson() => _$PermissionActionAbstractToJson(this);
+
+  @override
+  PermissionActionAbstract fromJsonViewAbstract(Map<String, dynamic> data) {
+    return PermissionActionAbstract.fromJson(data);
+  }
+
+  @override
+  String? getTableNameApi() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJsonViewAbstract() {
+    return toJson();
+  }
 }
