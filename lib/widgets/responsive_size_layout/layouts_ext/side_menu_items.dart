@@ -25,13 +25,13 @@ class SideMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: kDefaultPadding),
-      child: InkWell(
+      child: GestureDetector(
         onTap: press,
         child: Row(
           children: [
             (isActive || isHover)
                 ? WebsafeSvg.asset(
-                    "assets/Icons/Angle right.svg",
+                    "Icons/Angle_right.svg",
                     width: 15,
                   )
                 : const SizedBox(width: 15),

@@ -26,7 +26,7 @@ class HomeLargeTabletPage extends StatelessWidget {
         Expanded(
           flex: size.width > 1340 ? 8 : 10,
           child: const Center(
-            child: Text("test page"),
+            child: Text("tes2t page"),
           ),
         ),
       ],

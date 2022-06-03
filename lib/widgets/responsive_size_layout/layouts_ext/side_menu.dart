@@ -26,7 +26,7 @@ class SideMenu extends StatelessWidget {
               Row(
                 children: [
                   Image.asset(
-                    "assets/images/Logo Outlook.png",
+                    "assets/images/Logo_Outlook.png",
                     width: 46,
                   ),
                   const Spacer(),
@@ -45,7 +45,7 @@ class SideMenu extends StatelessWidget {
                 ),
                 color: kPrimaryColor,
                 onPressed: () {},
-                icon: WebsafeSvg.asset("assets/Icons/Edit.svg", width: 16),
+                icon: WebsafeSvg.asset("Icons/Edit.svg", width: 16),
                 label: const Text(
                   "New message",
                   style: TextStyle(color: Colors.white),
@@ -65,7 +65,7 @@ class SideMenu extends StatelessWidget {
                 ),
                 color: kBgDarkColor,
                 onPressed: () {},
-                icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
+                icon: WebsafeSvg.asset("Icons/Download.svg", width: 16),
                 label: const Text(
                   "Get messages",
                   style: TextStyle(color: kTextColor),
@@ -76,26 +76,26 @@ class SideMenu extends StatelessWidget {
               SideMenuItem(
                 press: () {},
                 title: "Inbox",
-                iconSrc: "assets/Icons/Inbox.svg",
+                iconSrc: "Icons/Inbox.svg",
                 isActive: true,
                 itemCount: 3,
               ),
               SideMenuItem(
                 press: () {},
                 title: "Sent",
-                iconSrc: "assets/Icons/Send.svg",
+                iconSrc: "Icons/Send.svg",
                 isActive: false,
               ),
               SideMenuItem(
                 press: () {},
                 title: "Drafts",
-                iconSrc: "assets/Icons/File.svg",
+                iconSrc: "Icons/File.svg",
                 isActive: false,
               ),
               SideMenuItem(
                 press: () {},
                 title: "Deleted",
-                iconSrc: "assets/Icons/Trash.svg",
+                iconSrc: "Icons/Trash.svg",
                 isActive: false,
                 showBorder: false,
               ),
