@@ -8,8 +8,9 @@ import '../app_theme.dart';
 import '../models/view_abstract.dart';
 import 'base_drawer.dart';
 
-class BaseHomePage extends StatelessWidget {
-  List<ViewAbstract> drawerItems;
+class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
+  List<T> drawerItems;
+  
   BaseHomePage({Key? key, required this.drawerItems}) : super(key: key);
 
   @override
@@ -27,11 +28,12 @@ class BaseHomePage extends StatelessWidget {
       title: 'Flutter UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.blue,
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: DrawerPage(drawerItems: getDrawerItems()),
+      home: DrawerPage(drawerItems: (drawerItems)),
     );
   }
 }

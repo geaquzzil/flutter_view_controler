@@ -15,6 +15,9 @@ class _DrawerPage extends State<DrawerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body: const Center(
+          child: Text("test page"),
+        ),
         drawer: ViewHelper.getDrawer(context, widget.drawerItems),
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
