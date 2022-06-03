@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert' as convert;
 import 'package:flutter_view_controller/encyptions/encrypter.dart';
 import 'package:flutter_view_controller/models/servers/server_response_master.dart';
+import 'package:flutter_view_controller/models/view_abstract_base.dart';
 import 'package:http/http.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 import 'package:reflectable/reflectable.dart';
@@ -17,7 +18,7 @@ class Reflector extends Reflectable {
 const reflector = Reflector();
 
 @reflector
-abstract class ViewAbstractApi<T> {
+abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
   int iD = -1;
   T fromJsonViewAbstract(Map<String, dynamic> json);
   Map<String, dynamic> toJsonViewAbstract();
