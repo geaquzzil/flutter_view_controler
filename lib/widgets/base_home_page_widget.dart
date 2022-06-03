@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../app_theme.dart';
 import '../models/view_abstract.dart';
-import 'base_drawer.dart';
+import 'base_home_responsive_page.dart';
 
 class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
   List<T> drawerItems;
@@ -33,7 +33,7 @@ class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: DrawerPage(drawerItems: (drawerItems)),
+      home: ResponsivePage(drawerItems: (drawerItems)),
     );
   }
 }
@@ -44,7 +44,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll('#', '');
     if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
+      hexColor = 'FF$hexColor';
     }
     return int.parse(hexColor, radix: 16);
   }

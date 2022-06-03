@@ -8,6 +8,19 @@ class HomeSmallTabletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    throw UnimplementedError();
+    return Row(children: const [
+      Expanded(
+        flex: 6,
+        child: Center(
+          child: Text("test page"),
+        ),
+      ),
+      Expanded(
+        flex: 9,
+        child: Center(
+          child: Text("test page"),
+        ),
+      ),
+    ]);
   }
 }

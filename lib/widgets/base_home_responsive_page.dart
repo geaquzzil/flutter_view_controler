@@ -4,29 +4,24 @@ import 'package:flutter_view_controller/widgets/responsive_size_layout/home_mobi
 import 'package:flutter_view_controller/widgets/responsive_size_layout/home_small_tablet_page.dart';
 
 import '../models/view_abstract.dart';
-import '../view_generator_helper.dart';
+import 'responsive_layout.dart';
 
-const mobileWidth = 599;
-const foldableSmallTablet = 839;
-const largeTablet = 840;
-
-class DrawerPage extends StatefulWidget {
+class ResponsivePage extends StatefulWidget {
   List<ViewAbstract> drawerItems;
-  DrawerPage({Key? key, required this.drawerItems}) : super(key: key);
+  ResponsivePage({Key? key, required this.drawerItems}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _DrawerPage();
+  State<StatefulWidget> createState() => _ResponsivePage();
 }
 
-class _DrawerPage extends State<DrawerPage> {
+class _ResponsivePage extends State<ResponsivePage> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < mobileWidth) {
+        if (Responsive.isMobile(context)) {
           return HomeMobilePage(drawerItems: widget.drawerItems);
-        } else if (constraints.maxWidth > mobileWidth &&
-            constraints.maxWidth < foldableSmallTablet) {
+        } else if (Responsive.isTablet(context)) {
           return HomeSmallTabletPage(drawerItems: widget.drawerItems);
         } else {
           return HomeLargeTabletPage(drawerItems: widget.drawerItems);

@@ -10,7 +10,7 @@ abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
 
   ListTile getDrawerListTitle(BuildContext context) {
     return ListTile(
-      subtitle: Text('tst'),
+      subtitle: const Text('tst'),
       leading: getIcon(context),
       title: getHeaderText(context),
       onTap: () => onDrawerItemClicked(context),
