@@ -10,7 +10,8 @@ enum ServerActions {
 }
 
 class URLS {
-  static const String BASE_URL = 'http://saffoury.com/SaffouryPaper2/index.php';
+  static const String BASE_URL =
+      'https://saffoury.com/SaffouryPaper2/index.php';
 
   static const Map<String, String> requestHeaders = {
     'Accept': 'application/json',

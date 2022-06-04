@@ -59,7 +59,7 @@ class _HomeMobilePage extends State<HomeMobilePage> {
               ),
             ),
           ),
-          body: const NavigationPage(),
+          body: NavigationPage(view_abstract: widget.drawerItems[0]),
         ));
   }
 

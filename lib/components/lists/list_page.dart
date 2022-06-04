@@ -11,18 +11,21 @@ class ListPage<T extends ViewAbstract> extends StatefulWidget {
 }
 
 class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
-  late List<T> list;
+  late List<T> list = [];
   int get count => list.length;
   int page = 0;
 
   @override
   void initState() {
     super.initState();
+    _loadMore();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      height: 200,
       child: RefreshIndicator(
         onRefresh: _refresh,
         child: LoadMore(
@@ -56,13 +59,16 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
     load();
   }
 
-  void load() {
+  Future<void> loadMoreList() async {
+    List? c = await widget.view_abstract.listCall(5, page);
+    if (c != null) {
+      list.addAll(List<T>.from(c));
+    }
+  }
+
+  void load() async {
     print("load");
-    setState(() async {
-      // list.a
-      list.addAll(List<T>.from(await widget.view_abstract.listCall(5, page)));
-      print("data count = ${list.length}");
-      page++;
-    });
+    await loadMoreList();
+    setState(() {});
   }
 }

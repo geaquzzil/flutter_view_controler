@@ -16,6 +16,11 @@ void main() {
     expect(calculator.addOne(0), 1);
   });
   test('test list', () async {
+    initializeReflectable();
+    Product? product = Product();
+    await product.listCall(2, 0);
+  });
+  test('test view', () async {
     print("TEST Run");
     initializeReflectable();
     Product? product = Product();
@@ -44,21 +49,18 @@ void main() {
 
 @reflector
 class Product extends ViewAbstractApi<Product> {
-
   @override
   String getTableNameApi() {
     // TODO: implement getTableNameApi
-    return "orders";
+    return "products";
   }
 
-  
-  
   @override
   Product fromJsonViewAbstract(Map<String, dynamic> json) {
     // TODO: implement fromJsonViewAbstract
     throw UnimplementedError();
   }
-  
+
   @override
   Map<String, dynamic> toJsonViewAbstract() {
     // TODO: implement toJsonViewAbstract

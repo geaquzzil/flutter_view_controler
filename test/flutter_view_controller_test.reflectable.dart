@@ -40,30 +40,35 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[-1],
             null,
             {
-              r'==': 0,
-              r'toString': 1,
-              r'noSuchMethod': 0,
-              r'hashCode': 1,
-              r'runtimeType': 1,
-              r'getCustomAction': 1,
-              r'requireObjects': 1,
-              r'requireObjectsList': 1,
-              r'getBodyExtenstionParams': 1,
-              r'getBodyCurrentActionASC': 0,
-              r'getBody': 0,
-              r'getHeadersExtenstion': 1,
-              r'getHeaders': 1,
+              r'==': 1,
+              r'toString': 0,
+              r'noSuchMethod': 1,
+              r'hashCode': 0,
+              r'runtimeType': 0,
+              r'getCardLeadingImage': 1,
+              r'getIcon': 1,
+              r'getSubtitleHeaderText': 1,
+              r'getHeaderText': 1,
+              r'getLabelText': 1,
+              r'getCustomAction': 0,
+              r'requireObjects': 0,
+              r'requireObjectsList': 0,
+              r'getBodyExtenstionParams': 0,
+              r'getBodyCurrentActionASC': 1,
+              r'getBody': 1,
+              r'getHeadersExtenstion': 0,
+              r'getHeaders': 0,
               r'getRespones': 2,
               r'viewCall': 3,
               r'addCall': 2,
               r'listCall': 4,
-              r'getHttp': 1,
-              r'getBodyCurrentAction': 0,
-              r'iD': 1,
-              r'iD=': 0,
-              r'fromJson': 0,
-              r'getTableNameApi': 1,
-              r'toJson': 1
+              r'getHttp': 0,
+              r'getBodyCurrentAction': 1,
+              r'iD': 0,
+              r'iD=': 1,
+              r'getTableNameApi': 0,
+              r'fromJsonViewAbstract': 1,
+              r'toJsonViewAbstract': 0
             }),
         r.GenericClassMirrorImpl(
             r'ViewAbstractApi',
@@ -83,27 +88,32 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[-1],
             null,
             {
-              r'==': 0,
-              r'toString': 1,
-              r'noSuchMethod': 0,
-              r'hashCode': 1,
-              r'runtimeType': 1,
-              r'getCustomAction': 1,
-              r'requireObjects': 1,
-              r'requireObjectsList': 1,
-              r'getBodyExtenstionParams': 1,
-              r'getBodyCurrentActionASC': 0,
-              r'getBody': 0,
-              r'getHeadersExtenstion': 1,
-              r'getHeaders': 1,
+              r'==': 1,
+              r'toString': 0,
+              r'noSuchMethod': 1,
+              r'hashCode': 0,
+              r'runtimeType': 0,
+              r'getCardLeadingImage': 1,
+              r'getIcon': 1,
+              r'getSubtitleHeaderText': 1,
+              r'getHeaderText': 1,
+              r'getLabelText': 1,
+              r'getCustomAction': 0,
+              r'requireObjects': 0,
+              r'requireObjectsList': 0,
+              r'getBodyExtenstionParams': 0,
+              r'getBodyCurrentActionASC': 1,
+              r'getBody': 1,
+              r'getHeadersExtenstion': 0,
+              r'getHeaders': 0,
               r'getRespones': 2,
               r'viewCall': 3,
               r'addCall': 2,
               r'listCall': 4,
-              r'getHttp': 1,
-              r'getBodyCurrentAction': 0,
-              r'iD': 1,
-              r'iD=': 0
+              r'getHttp': 0,
+              r'getBodyCurrentAction': 1,
+              r'iD': 0,
+              r'iD=': 1
             },
             (o) => false,
             null,
@@ -121,6 +131,13 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r'noSuchMethod': (dynamic instance) => instance.noSuchMethod,
         r'hashCode': (dynamic instance) => instance.hashCode,
         r'runtimeType': (dynamic instance) => instance.runtimeType,
+        r'getCardLeadingImage': (dynamic instance) =>
+            instance.getCardLeadingImage,
+        r'getIcon': (dynamic instance) => instance.getIcon,
+        r'getSubtitleHeaderText': (dynamic instance) =>
+            instance.getSubtitleHeaderText,
+        r'getHeaderText': (dynamic instance) => instance.getHeaderText,
+        r'getLabelText': (dynamic instance) => instance.getLabelText,
         r'getCustomAction': (dynamic instance) => instance.getCustomAction,
         r'requireObjects': (dynamic instance) => instance.requireObjects,
         r'requireObjectsList': (dynamic instance) =>
@@ -141,15 +158,16 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r'getBodyCurrentAction': (dynamic instance) =>
             instance.getBodyCurrentAction,
         r'iD': (dynamic instance) => instance.iD,
-        r'fromJson': (dynamic instance) => instance.fromJson,
         r'getTableNameApi': (dynamic instance) => instance.getTableNameApi,
-        r'toJson': (dynamic instance) => instance.toJson
+        r'fromJsonViewAbstract': (dynamic instance) =>
+            instance.fromJsonViewAbstract,
+        r'toJsonViewAbstract': (dynamic instance) => instance.toJsonViewAbstract
       },
       {r'iD=': (dynamic instance, value) => instance.iD = value},
       null,
       [
-        const [1, 0, null],
         const [0, 0, null],
+        const [1, 0, null],
         const [
           0,
           0,
@@ -160,11 +178,15 @@ final _data = <r.Reflectable, r.ReflectorData>{
           0,
           const [#onResponse]
         ],
-        const [2, 0, null]
+        const [
+          2,
+          0,
+          const [#onResponse]
+        ]
       ])
 };
 
-const _memberSymbolMap = null;
+final _memberSymbolMap = null;
 
 void initializeReflectable() {
   r.data = _data;

@@ -19,7 +19,7 @@ const reflector = Reflector();
 
 @reflector
 abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
-  int iD = -1;
+  String iD = "-1";
   T fromJsonViewAbstract(Map<String, dynamic> json);
   Map<String, dynamic> toJsonViewAbstract();
 
@@ -105,20 +105,25 @@ abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
     return null;
   }
 
-  Future<List<T>> listCall(int count, int page) async {
-    var response = await getHttp().post(Uri.parse(URLS.BASE_URL),
-        headers: URLS.requestHeaders, body: getBody(ServerActions.list));
+  Future<List<T>?> listCall(int count, int page,
+      {OnResponseCallback? onResponse}) async {
+    var response = await getRespones(
+        onResponse: onResponse, serverActions: ServerActions.list);
 
+    if (response == null) return null;
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
 
       Iterable l = convert.jsonDecode(response.body);
       return List<T>.from(l.map((model) => fromJsonViewAbstract(model)));
+    } else if (response.statusCode == 401) {
+      ServerResponseMaster serverResponse =
+          ServerResponseMaster.fromJson(convert.jsonDecode(response.body));
+      onResponse?.onServerFailureResponse(serverResponse.serverResponse);
+      return null;
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load album');
+      return null;
     }
   }
 
@@ -150,6 +155,8 @@ abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
         break;
       case ServerActions.list:
         mainBody.addAll(getBodyCurrentActionASC(action));
+        mainBody['start'] = 10.toString();
+        mainBody['end'] = 0.toString();
         break;
       default:
         break;

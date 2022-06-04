@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/view_abstract.dart';
+import '../../lists/list_page.dart';
 
 class NavigationPage<T extends ViewAbstract> extends StatefulWidget {
-  const NavigationPage({Key? key}) : super(key: key);
+  final T view_abstract;
+  const NavigationPage({Key? key, required this.view_abstract})
+      : super(key: key);
 
   @override
   _NavigationPageState createState() => _NavigationPageState();
 }
 
-class _NavigationPageState extends State<NavigationPage> {
+class _NavigationPageState<T extends ViewAbstract>
+    extends State<NavigationPage> {
   int _currentIndex = 0;
 
   _buildTextAndSearchBody() {
@@ -41,6 +45,9 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   Widget getView() {
+    if (_currentIndex == 0) {
+      return ListPage(view_abstract: widget.view_abstract);
+    }
     return const Center(
       child: Text("test page"),
     );
