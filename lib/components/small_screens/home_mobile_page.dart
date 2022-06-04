@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_view_controller/components/small_screens/ext/bottom_navigation_page.dart';
 
 import '../../models/view_abstract.dart';
 import '../../view_generator_helper.dart';
 
-class HomeMobilePage extends StatelessWidget {
-  final _advancedDrawerController = AdvancedDrawerController();
-  List<ViewAbstract> drawerItems;
-  HomeMobilePage({Key? key, required this.drawerItems}) : super(key: key);
+class HomeMobilePage extends StatefulWidget {
+  final List<ViewAbstract> drawerItems;
+  const HomeMobilePage({Key? key, required this.drawerItems}) : super(key: key);
 
   @override
+  State<HomeMobilePage> createState() => _HomeMobilePage();
+}
+
+class _HomeMobilePage extends State<HomeMobilePage> {
+  final _advancedDrawerController = AdvancedDrawerController();
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return AdvancedDrawer(
         backdropColor: Colors.blueGrey,
         controller: _advancedDrawerController,
@@ -30,18 +35,21 @@ class HomeMobilePage extends StatelessWidget {
           //     blurRadius: 0.0,
           //   ),
           // ],
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
+        drawer: ViewHelper.getDrawerSafeArea(context, widget.drawerItems),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Advanced Drawer Example'),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: const Text(''),
             leading: IconButton(
               onPressed: _handleMenuButtonPressed,
               icon: ValueListenableBuilder<AdvancedDrawerValue>(
                 valueListenable: _advancedDrawerController,
                 builder: (_, value, __) {
                   return AnimatedSwitcher(
-                    duration: Duration(milliseconds: 250),
+                    duration: const Duration(milliseconds: 250),
                     child: Icon(
                       value.visible ? Icons.clear : Icons.menu,
                       key: ValueKey<bool>(value.visible),
@@ -51,14 +59,13 @@ class HomeMobilePage extends StatelessWidget {
               ),
             ),
           ),
-          body: Container(),
-        ),
-        drawer: ViewHelper.getDrawerSafeArea(context, drawerItems));
+          body: const NavigationPage(),
+        ));
   }
 
   void _handleMenuButtonPressed() {
     // NOTICE: Manage Advanced Drawer state through the Controller.
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
-    _advancedDrawerController.showDrawer();
+    _advancedDrawerController.toggleDrawer();
   }
 }

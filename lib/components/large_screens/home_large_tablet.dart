@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/view_abstract.dart';
-import 'layouts_ext/side_menu.dart';
+import '../../widgets/responsive_size_layout/layouts_ext/side_menu.dart';
 
 class HomeLargeTabletPage extends StatelessWidget {
   List<ViewAbstract> drawerItems;
