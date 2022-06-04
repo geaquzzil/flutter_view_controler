@@ -24,12 +24,8 @@ class SideMenu extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                children: 
-                 
-                [
-             
+                children: [
                   Image.asset(
-                    
                     "assets/images/Logo_Outlook.png",
                     width: 46,
                   ),

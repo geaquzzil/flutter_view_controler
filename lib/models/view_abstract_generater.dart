@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'view_abstract_api.dart';
 
 abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
+  
   void onDrawerItemClicked(BuildContext context) {
     Navigator.of(context).pop();
+
     print('onDrawerItemClicked=> ${getHeaderText(context)?.data}');
   }
 

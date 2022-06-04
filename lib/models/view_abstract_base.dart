@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class ViewAbstractBase<T> {
+  
   Icon? getIcon(BuildContext context) {
     return null;
   }
