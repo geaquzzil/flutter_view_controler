@@ -5,6 +5,14 @@ import 'view_abstract_api.dart';
 abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
   void onCardClicked(BuildContext context) {
     print("Card Clicked");
+    Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductDetailsScreen(
+                    product: bestSelling[index],
+                  ),
+                ),
+              );
   }
 
   Widget getCardListView(BuildContext context) {

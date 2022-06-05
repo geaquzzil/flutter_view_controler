@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_view_controller/models/servers/server_helpers.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
+import 'package:flutter_view_controller/size_config.dart';
 import 'package:loadmore/loadmore.dart';
 
 class ListPage<T extends ViewAbstract> extends StatefulWidget {
@@ -19,7 +20,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 400,
+      height: SizeConfig.screenHeight,
       child: RefreshIndicator(
         onRefresh: _refresh,
         child: LoadMore(
@@ -93,8 +94,8 @@ class CustomLoadMoreDelegate extends LoadMoreDelegate {
               width: _loadmoreIndicatorSize,
               height: _loadmoreIndicatorSize,
               child: CircularProgressIndicator(
-                // backgroundColor: Colors.blue,
-              ),
+                  // backgroundColor: Colors.blue,
+                  ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
