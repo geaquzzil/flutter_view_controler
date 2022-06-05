@@ -9,8 +9,8 @@ class ViewHelper {
         child: Container(
             constraints: const BoxConstraints.expand(height: double.infinity),
             child: ListTileTheme(
-              textColor: Colors.white,
-              iconColor: Colors.white,
+              // textColor: Colors.white,
+              // iconColor: Colors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [

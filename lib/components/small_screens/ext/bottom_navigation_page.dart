@@ -38,6 +38,7 @@ class _NavigationPageState<T extends ViewAbstract>
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
+          
           child: getView(),
         )
       ],

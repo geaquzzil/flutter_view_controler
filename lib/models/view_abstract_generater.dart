@@ -3,16 +3,23 @@ import 'package:flutter/material.dart';
 import 'view_abstract_api.dart';
 
 abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
-  Card getCardListView(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: (getHeaderText(context)),
-        subtitle: (getSubtitleHeaderText(context)),
-        leading: CircleAvatar(
-          radius: 28,
-          backgroundImage: getCardLeadingImage(context),
+  void onCardClicked(BuildContext context) {
+    print("Card Clicked");
+  }
+
+  Widget getCardListView(BuildContext context) {
+    return InkWell(
+      onTap: () => onCardClicked(context),
+      child: Card(
+        child: ListTile(
+          title: (getHeaderText(context)),
+          subtitle: (getSubtitleHeaderText(context)),
+          leading: CircleAvatar(
+            radius: 28,
+            backgroundImage: getCardLeadingImage(context),
+          ),
+          // trailing: getTrailing(context),
         ),
-        // trailing: getTrailing(context),
       ),
     );
   }

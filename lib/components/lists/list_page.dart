@@ -15,24 +15,18 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   late List<T> list = [];
   int get count => list.length;
   int page = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 200,
+      height: 400,
       child: RefreshIndicator(
         onRefresh: _refresh,
         child: LoadMore(
           isFinish: count >= 60,
           onLoadMore: _loadMore,
-          whenEmptyLoad: false,
-          delegate: CustomLoadMoreDelegate(),
+          whenEmptyLoad: true,
+          delegate: const DefaultLoadMoreDelegate(),
           textBuilder: DefaultLoadMoreTextBuilder.english,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
@@ -63,6 +57,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
     if (c != null) {
       list.addAll(List<T>.from(c));
     }
+    setState(() {});
     return result;
   }
 
@@ -83,9 +78,7 @@ class CustomLoadMoreDelegate extends LoadMoreDelegate {
       {LoadMoreTextBuilder builder = DefaultLoadMoreTextBuilder.english}) {
     String text = builder(status);
     if (status == LoadMoreStatus.fail) {
-      return Container(
-        child: Text(text),
-      );
+      return Text(text);
     }
     if (status == LoadMoreStatus.idle) {
       return Text(text);
@@ -100,7 +93,7 @@ class CustomLoadMoreDelegate extends LoadMoreDelegate {
               width: _loadmoreIndicatorSize,
               height: _loadmoreIndicatorSize,
               child: CircularProgressIndicator(
-                backgroundColor: Colors.blue,
+                // backgroundColor: Colors.blue,
               ),
             ),
             Padding(
