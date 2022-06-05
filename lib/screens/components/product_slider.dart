@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/components/card_body.dart';
+import 'package:flutter_view_controller/components/product_card_bottom.dart';
+import 'package:flutter_view_controller/constants.dart';
 import 'package:flutter_view_controller/size_config.dart';
 
 class ProductSlider extends StatelessWidget {
@@ -19,14 +22,14 @@ class ProductSlider extends StatelessWidget {
             height: SizeConfig.getScreenPropotionHeight(300.0),
             index: index,
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductDetailsScreen(
-                    product: demoProducts[index],
-                  ),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ProductDetailsScreen(
+              //       product: demoProducts[index],
+              //     ),
+              //   ),
+              // );
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +40,7 @@ class ProductSlider extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
-                    demoProducts[index].name,
+                    "demoProducts[index].name",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -48,7 +51,7 @@ class ProductSlider extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
-                    demoProducts[index].modelNo,
+                    "demoProducts[index].modelNo",
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -58,25 +61,25 @@ class ProductSlider extends StatelessWidget {
                 ),
                 Center(
                   child: Hero(
-                    tag: demoProducts[index].id,
+                    tag: "demoProducts[index].id",
                     child: Image.asset(
-                      demoProducts[index].images[0],
+                      "",
                       width: SizeConfig.getScreenPropotionWidth(100),
                       height: SizeConfig.getScreenPropotionHeight(170),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ProductCardBottom(
-                    product: demoProducts[index],
-                  ),
-                )
+                // Expanded(
+                //   child: ProductCardBottom(
+                //     : demoProducts[index],
+                //   ),
+                // )
               ],
             ),
           );
         },
-        itemCount: demoProducts.length,
+        itemCount: 3,
       ),
     );
   }

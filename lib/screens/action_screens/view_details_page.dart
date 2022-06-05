@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_view_controller/components/cart_button.dart';
+import 'package:flutter_view_controller/models/view_abstract_generater.dart';
 
 import '../../components/main_body.dart';
 import '../../components/primary_button.dart';
@@ -72,7 +73,7 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
             Hero(
               tag: object.iD,
               child: Image.asset(
-                product.images[0],
+                "",
                 width: SizeConfig.getScreenPropotionWidth(250),
                 height: SizeConfig.getScreenPropotionWidth(250),
               ),
@@ -91,9 +92,9 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '\$${object.price}',
-                            style: const TextStyle(
+                          const Text(
+                            'object.price',
+                            style: TextStyle(
                               color: kPrimaryColor,
                               fontSize: 28.0,
                               fontWeight: FontWeight.bold,
@@ -117,21 +118,21 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      ProductImages(product: product),
+                      //TODO ProductImages(product: product),
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        product.modelNo,
-                        style: const TextStyle(
+                      const Text(
+                        "product.modelNo",
+                        style: TextStyle(
                           color: kPrimaryColor,
                           fontSize: 16.0,
                         ),
                       ),
                       RatingBar.builder(
-                        initialRating: product.rating,
+                        initialRating: 2,
                         allowHalfRating: false,
-                        itemCount: product.rating.toInt(),
+                        itemCount: 5,
                         ignoreGestures:
                             true, // this disables the change star rating
                         itemSize: 20,
@@ -144,9 +145,9 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
                       const SizedBox(
                         height: 15,
                       ),
-                      Text(
-                        product.description,
-                        style: const TextStyle(
+                      const Text(
+                        "product.description",
+                        style: TextStyle(
                           color: kTextLightColor,
                           fontSize: 14.0,
                         ),

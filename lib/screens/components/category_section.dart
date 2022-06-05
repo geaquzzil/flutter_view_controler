@@ -21,21 +21,21 @@ class _CategorySectionState extends State<CategorySection> {
       ),
       child: SizedBox(
         height: 50.0,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return CategoryPhill(
-              category: demoCategories[index],
-              onTap: () {
-                setState(() {
-                  _activeCategory = demoCategories[index].id;
-                });
-              },
-              isActive: _activeCategory == demoCategories[index].id,
-            );
-          },
-          itemCount: demoCategories.length,
-        ),
+        // child: ListView.builder(
+        //   scrollDirection: Axis.horizontal,
+        //   itemBuilder: (context, index) {
+        //     return CategoryPhill(
+        //       category: demoCategories[index],
+        //       onTap: () {
+        //         setState(() {
+        //           _activeCategory = demoCategories[index].id;
+        //         });
+        //       },
+        //       isActive: _activeCategory == demoCategories[index].id,
+        //     );
+        //   },
+        //   itemCount: demoCategories.length,
+        // ),
       ),
     );
   }
@@ -45,12 +45,12 @@ class CategoryPhill extends StatelessWidget {
   const CategoryPhill({
     Key? key,
     required this.onTap,
-    required this.category,
+    // required this.category,
     this.isActive = false, // by default active state is false
   }) : super(key: key);
 
   final GestureTapCallback onTap;
-  final CategoryModel category;
+  // final CategoryModel category;
   final bool isActive;
 
   @override
@@ -80,7 +80,7 @@ class CategoryPhill extends StatelessWidget {
           ],
         ),
         child: Text(
-          category.name,
+          "category.name",
           style: TextStyle(
             fontSize: 14,
             color: isActive ? kWhite : kTextLightColor,

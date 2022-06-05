@@ -21,11 +21,11 @@ class ProductImages<T extends ViewAbstract> extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(right: 30),
             child: Image.asset(
-              product.images[index],
+              "",
             ),
           );
         },
-        itemCount: product.images.length,
+        itemCount: 3,
       ),
     );
   }

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_view_controller/constants.dart';
+import 'package:flutter_view_controller/models/view_abstract.dart';
 
-class ProductCardBottom extends StatelessWidget {
+class ProductCardBottom<T extends ViewAbstract> extends StatelessWidget {
   const ProductCardBottom({
     Key? key,
-    required this.product,
+    required this.object,
   }) : super(key: key);
 
-  final ProductModel product;
+  final T object;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class ProductCardBottom extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '\$${product.price}',
+            'product.price',
             style: const TextStyle(
               color: kWhite,
               fontSize: 14,
@@ -33,9 +34,9 @@ class ProductCardBottom extends StatelessWidget {
             ),
           ),
           RatingBar.builder(
-            initialRating: product.rating,
+            initialRating: 2,
             allowHalfRating: false,
-            itemCount: product.rating.toInt(),
+            itemCount: 5,
             ignoreGestures: true, // this disables the change star rating
             itemSize: 20,
             itemBuilder: (context, _) => const Icon(
