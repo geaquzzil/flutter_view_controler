@@ -1,14 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_view_controller/components/lists/list_page.dart';
 
 import 'package:flutter_view_controller/flutter_view_controller.dart';
 import 'package:flutter_view_controller/models/servers/server_helpers.dart';
 import 'package:flutter_view_controller/models/servers/server_response.dart';
+import 'package:flutter_view_controller/models/view_abstract.dart';
 
 import 'package:flutter_view_controller/models/view_abstract_api.dart';
 
-import 'flutter_view_controller_test.reflectable.dart';
-
 void main() {
+  testWidgets(
+    "test list page",
+    (WidgetTester tester) async {
+      await tester
+          .pumpWidget(MaterialApp(home: ListPage(view_abstract: Product())));
+      tester.pump();
+
+      await Future.delayed(const Duration(seconds: 5), () {});
+    },
+  );
   test('adds one to input values', () {
     final calculator = Calculator();
     expect(calculator.addOne(2), 3);
@@ -16,21 +27,20 @@ void main() {
     expect(calculator.addOne(0), 1);
   });
   test('test list', () async {
-    initializeReflectable();
+    // initializeReflectable();
     Product? product = Product();
     await product.listCall(2, 0);
   });
   test('test view', () async {
     print("TEST Run");
-    initializeReflectable();
+    // initializeReflectable();
     Product? product = Product();
     //   ClassMirror aMirror = reflector.reflectType(product);
     // final declarations = aMirror.declarations;
     // print(abMirror.type.typeArguments[0].reflectedType); // Prints 'B'.
     // print(abMirror.type.reflectedTypeArguments[0] == B); // Prints 'true'.
     product = await product.viewCall(2,
-        onResponse: OnResponseCallback(
-          onServerNoMoreItems: () {
+        onResponse: OnResponseCallback(onServerNoMoreItems: () {
           //...
         }, onServerFailure: (message) {
           //...
@@ -49,7 +59,7 @@ void main() {
 }
 
 @reflector
-class Product extends ViewAbstractApi<Product> {
+class Product extends ViewAbstract<Product> {
   @override
   String getTableNameApi() {
     // TODO: implement getTableNameApi
