@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/models/servers/server_helpers.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
 import 'package:loadmore/loadmore.dart';
 
@@ -18,7 +21,6 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   @override
   void initState() {
     super.initState();
-    _loadMore();
   }
 
   @override
@@ -32,8 +34,8 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
           isFinish: count >= 60,
           onLoadMore: _loadMore,
           whenEmptyLoad: false,
-          delegate: const DefaultLoadMoreDelegate(),
-          textBuilder: DefaultLoadMoreTextBuilder.chinese,
+          delegate: CustomLoadMoreDelegate(),
+          textBuilder: DefaultLoadMoreTextBuilder.english,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return list[index].getCardListView(context);
@@ -47,28 +49,74 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
 
   Future<bool> _loadMore() async {
     print("onLoadMore");
-    await Future.delayed(const Duration(seconds: 0, milliseconds: 2000));
-    load();
-    return true;
+    bool result = true;
+    List? c = await widget.view_abstract.listCall(5, page,
+        onResponse: OnResponseCallback(onServerNoMoreItems: () {
+          result = false;
+          return;
+          //...
+        }, onServerFailure: (message) {
+          result = false;
+          //...
+        }, onServerFailureResponse: (message) {
+          result = false;
+          //...
+        }));
+    if (c != null) {
+      list.addAll(List<T>.from(c));
+    }
+    return result;
   }
 
   Future<void> _refresh() async {
     page = 0;
     await Future.delayed(const Duration(seconds: 0, milliseconds: 2000));
     list.clear();
-    load();
   }
+}
 
-  Future<void> loadMoreList() async {
-    List? c = await widget.view_abstract.listCall(5, page);
-    if (c != null) {
-      list.addAll(List<T>.from(c));
+class CustomLoadMoreDelegate extends LoadMoreDelegate {
+  static const _defaultLoadMoreHeight = 80.0;
+  static const _loadmoreIndicatorSize = 33.0;
+  static const _loadMoreDelay = 16;
+  CustomLoadMoreDelegate();
+  @override
+  Widget buildChild(LoadMoreStatus status,
+      {LoadMoreTextBuilder builder = DefaultLoadMoreTextBuilder.english}) {
+    String text = builder(status);
+    if (status == LoadMoreStatus.fail) {
+      return Container(
+        child: Text(text),
+      );
     }
-  }
+    if (status == LoadMoreStatus.idle) {
+      return Text(text);
+    }
+    if (status == LoadMoreStatus.loading) {
+      return Container(
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(
+              width: _loadmoreIndicatorSize,
+              height: _loadmoreIndicatorSize,
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.blue,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(text),
+            ),
+          ],
+        ),
+      );
+    }
+    if (status == LoadMoreStatus.nomore) {
+      return Text(text);
+    }
 
-  void load() async {
-    print("load");
-    await loadMoreList();
-    setState(() {});
+    return Text(text);
   }
 }
