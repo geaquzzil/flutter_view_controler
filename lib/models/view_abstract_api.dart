@@ -19,7 +19,7 @@ const reflector = Reflector();
 
 @reflector
 abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
-  String iD = "-1";
+
   T fromJsonViewAbstract(Map<String, dynamic> json);
   Map<String, dynamic> toJsonViewAbstract();
 

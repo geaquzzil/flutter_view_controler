@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_view_controller/components/cart_button.dart';
 
-import '../components/main_body.dart';
-import '../components/primary_button.dart';
-import '../constants.dart';
-import '../models/view_abstract.dart';
-import '../size_config.dart';
+import '../../components/main_body.dart';
+import '../../components/primary_button.dart';
+import '../../components/rounded_icon_button.dart';
+import '../../models/view_abstract.dart';
+import '../../size_config.dart';
+
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_view_controller/constants.dart';
 
 class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
   const ViewDetailsPage({
     Key? key,
-    required this.product,
+    required this.object,
   }) : super(key: key);
 
-  final T product;
+  final T object;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +70,7 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
         child: Column(
           children: [
             Hero(
-              tag: product.id,
+              tag: object.iD,
               child: Image.asset(
                 product.images[0],
                 width: SizeConfig.getScreenPropotionWidth(250),
@@ -87,7 +92,7 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '\$${product.price}',
+                            '\$${object.price}',
                             style: const TextStyle(
                               color: kPrimaryColor,
                               fontSize: 28.0,

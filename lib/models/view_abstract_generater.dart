@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/screens/action_screens/view_details_page.dart';
 
 import 'view_abstract_api.dart';
 
@@ -6,13 +7,13 @@ abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
   void onCardClicked(BuildContext context) {
     print("Card Clicked");
     Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductDetailsScreen(
-                    product: bestSelling[index],
-                  ),
-                ),
-              );
+      context,
+      MaterialPageRoute(
+        builder: (context) => ViewDetailsPage(
+          object: this,
+        ),
+      ),
+    );
   }
 
   Widget getCardListView(BuildContext context) {

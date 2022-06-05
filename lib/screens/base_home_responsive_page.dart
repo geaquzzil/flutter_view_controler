@@ -4,7 +4,7 @@ import 'package:flutter_view_controller/components/small_screens/home_mobile_pag
 import 'package:flutter_view_controller/components/small_tablets_screens/home_small_tablet_page.dart';
 
 import '../models/view_abstract.dart';
-import 'responsive_layout.dart';
+import '../widgets/responsive_layout.dart';
 
 class ResponsivePage extends StatefulWidget {
   List<ViewAbstract> drawerItems;

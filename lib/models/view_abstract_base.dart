@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class ViewAbstractBase<T> {
-
+  String iD = "-1";
 
   ImageProvider? getCardLeadingImage(BuildContext context) {
     return null;

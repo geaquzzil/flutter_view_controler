@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_view_controller/constants.dart';
 import 'package:flutter_view_controller/widgets/extensions.dart';
-import 'package:websafe_svg/websafe_svg.dart';
-
-import '../../constants.dart';
 import '../../responsive_layout.dart';
 import 'side_menu_items.dart';
 
@@ -45,7 +44,7 @@ class SideMenu extends StatelessWidget {
                 ),
                 color: kPrimaryColor,
                 onPressed: () {},
-                icon: WebsafeSvg.asset("Icons/Edit.svg", width: 16),
+                icon: SvgPicture.asset("Icons/Edit.svg", width: 16),
                 label: const Text(
                   "New message",
                   style: TextStyle(color: Colors.white),
@@ -65,7 +64,7 @@ class SideMenu extends StatelessWidget {
                 ),
                 color: kBgDarkColor,
                 onPressed: () {},
-                icon: WebsafeSvg.asset("Icons/Download.svg", width: 16),
+                icon: SvgPicture.asset("Icons/Download.svg", width: 16),
                 label: const Text(
                   "Get messages",
                   style: TextStyle(color: kTextColor),
