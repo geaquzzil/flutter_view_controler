@@ -12,14 +12,14 @@ class ProductImages<T extends ViewAbstract> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: SizeConfig.getScreenPropotionHeight(80.0),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 30),
             child: Image.asset(
               "",
             ),

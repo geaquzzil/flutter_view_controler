@@ -14,7 +14,7 @@ class ProductCardBottom<T extends ViewAbstract> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       decoration: const BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.only(
@@ -25,9 +25,9 @@ class ProductCardBottom<T extends ViewAbstract> extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          const Text(
             'product.price',
-            style: const TextStyle(
+            style: TextStyle(
               color: kWhite,
               fontSize: 14,
               fontWeight: FontWeight.bold,

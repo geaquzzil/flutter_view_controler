@@ -11,12 +11,12 @@ class CategorySection extends StatefulWidget {
 }
 
 class _CategorySectionState extends State<CategorySection> {
-  int _activeCategory = 0;
+  final int _activeCategory = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
+    return const Padding(
+      padding: EdgeInsets.only(
         left: 36,
       ),
       child: SizedBox(

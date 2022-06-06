@@ -18,7 +18,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   int page = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: SizeConfig.screenHeight,
       child: RefreshIndicator(

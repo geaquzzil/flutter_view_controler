@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_view_controller/components/card_body.dart';
-import 'package:flutter_view_controller/components/product_card_bottom.dart';
 import 'package:flutter_view_controller/constants.dart';
 import 'package:flutter_view_controller/size_config.dart';
 
@@ -11,7 +10,7 @@ class ProductSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: SizeConfig.getScreenPropotionHeight(300.0),
       child: ListView.builder(
@@ -34,10 +33,10 @@ class ProductSlider extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 19,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
                     "demoProducts[index].name",
@@ -48,7 +47,7 @@ class ProductSlider extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
                     "demoProducts[index].modelNo",

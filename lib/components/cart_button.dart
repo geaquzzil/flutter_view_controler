@@ -13,7 +13,7 @@ class CartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: SizedBox(
         width: 100.0,
         height: 40.0,
         child: Stack(

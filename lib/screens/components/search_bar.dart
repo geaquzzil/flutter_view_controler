@@ -15,7 +15,7 @@ class SearchBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 40.0,
               child: TextField(
                 style: const TextStyle(

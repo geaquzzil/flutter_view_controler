@@ -27,6 +27,11 @@ dependencies:
   google_fonts: ^2.1.0 # Used to include google fonts
   flutter_rating_bar: ^4.0.0 # Used for show product star ratings
 
+  responsive_framework: ^0.0.14
+  flutter_icons: ^1.1.0
+  smooth_page_indicator: ^0.2.0
+  carousel_slider: ^3.0.0
+  
 dev_dependencies:
   # mockito: ^5.0.16
   build_runner: ^2.0.5

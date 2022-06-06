@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_view_controller/components/cart_button.dart';
-import 'package:flutter_view_controller/models/view_abstract_generater.dart';
 
 import '../../components/main_body.dart';
 import '../../components/primary_button.dart';
@@ -65,7 +64,7 @@ class ViewDetailsPage<T extends ViewAbstract> extends StatelessWidget {
           text: "Buy Now",
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: SizeConfig.screenHeight,
         child: Column(

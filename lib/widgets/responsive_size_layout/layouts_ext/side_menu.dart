@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_view_controller/constants.dart';
+import 'package:flutter_view_controller/size_config.dart';
 import 'package:flutter_view_controller/widgets/extensions.dart';
-import '../../responsive_layout.dart';
 import 'side_menu_items.dart';
 
 class SideMenu extends StatelessWidget {
@@ -30,7 +30,7 @@ class SideMenu extends StatelessWidget {
                   ),
                   const Spacer(),
                   // We don't want to show this close button on Desktop mood
-                  if (!Responsive.isDesktop(context)) const CloseButton(),
+                  if (!SizeConfig.isDesktop(context)) const CloseButton(),
                 ],
               ),
               const SizedBox(height: kDefaultPadding),
