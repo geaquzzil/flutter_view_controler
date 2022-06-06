@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_view_controller/constants.dart';
 import 'package:flutter_view_controller/globals.dart';
+import 'package:flutter_view_controller/screens/web/home.dart';
 import 'package:flutter_view_controller/size_config.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -17,15 +18,28 @@ List<HeaderItem> headerItems = [
   HeaderItem(title: "SERVICES", onTap: () {}),
   HeaderItem(title: "PORTFOLIO", onTap: () {}),
   HeaderItem(title: "TESTIMONIALS", onTap: () {}),
-  HeaderItem(title: "BLOGS", onTap: () {}),
   HeaderItem(
-    title: "HIRE ME",
-    onTap: () {},
+      title: "BLOGS",
+      onTap: () {
+        // context;
+      }),
+  HeaderItem(
+    title: "LOG IN",
+    onClickAction: (BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeWebPage(),
+        ),
+      );
+    },
     isButton: true,
   ),
 ];
 
 class HeaderLogo extends StatelessWidget {
+  const HeaderLogo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,15 +51,15 @@ class HeaderLogo extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "M",
+                  text: "Saffoury",
                   style: GoogleFonts.oswald(
                     color: Colors.white,
                     fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 TextSpan(
-                  text: ".",
+                  text: "Paper",
                   style: GoogleFonts.oswald(
                     color: kPrimaryColor,
                     fontSize: 36.0,
@@ -62,6 +76,8 @@ class HeaderLogo extends StatelessWidget {
 }
 
 class HeaderRow extends StatelessWidget {
+  const HeaderRow({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveVisibility(
@@ -83,7 +99,8 @@ class HeaderRow extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 5.0),
                         child: TextButton(
-                          onPressed: item.onTap,
+                          // onPressed: () {},
+                          onPressed: item.onClickAction!(context),
                           child: Text(
                             item.title,
                             style: const TextStyle(
@@ -100,7 +117,7 @@ class HeaderRow extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(right: 30.0),
                         child: GestureDetector(
-                          onTap: item.onTap,
+                          onTap: item.onClickAction!(context),
                           child: Text(
                             item.title,
                             style: const TextStyle(
@@ -120,6 +137,8 @@ class HeaderRow extends StatelessWidget {
 }
 
 class Header extends StatelessWidget {
+  const Header({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -169,9 +188,9 @@ class Header extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: const [
           HeaderLogo(),
-           HeaderRow(),
+          HeaderRow(),
         ],
       ),
     );
