@@ -61,7 +61,7 @@ class CvSection extends StatelessWidget {
             children: [
               Text(
                 "BETTER DESIGN,\nBETTER EXPERIENCES",
-                style: GoogleFonts.oswald(
+                style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                   height: 1.8,
@@ -74,7 +74,7 @@ class CvSection extends StatelessWidget {
                   cursor: SystemMouseCursors.click,
                   child: Text(
                     "DOWNLOAD CV",
-                    style: GoogleFonts.oswald(
+                    style: GoogleFonts.roboto(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.w900,
                       fontSize: 16.0,
@@ -124,7 +124,7 @@ class CvSection extends StatelessWidget {
                               ),
                               Text(
                                 designProcesses[index].title,
-                                style: GoogleFonts.oswald(
+                                style: GoogleFonts.roboto(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,

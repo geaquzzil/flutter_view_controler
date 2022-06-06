@@ -70,7 +70,7 @@ class SkillSection extends StatelessWidget {
                     children: [
                       Text(
                         "SKILLS",
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
                           fontSize: 28.0,

@@ -47,7 +47,7 @@ class IosAppAd extends StatelessWidget {
                       children: [
                         Text(
                           "IOS APP",
-                          style: GoogleFonts.oswald(
+                          style: GoogleFonts.roboto(
                             color: kPrimaryColor,
                             fontWeight: FontWeight.w900,
                             fontSize: 16.0,
@@ -58,7 +58,7 @@ class IosAppAd extends StatelessWidget {
                         ),
                         Text(
                           "UNIVERSAL\nSMART HOME APP",
-                          style: GoogleFonts.oswald(
+                          style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                             height: 1.3,

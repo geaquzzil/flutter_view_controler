@@ -40,7 +40,7 @@ class WebsiteAd extends StatelessWidget {
                       children: [
                         Text(
                           "WEBSITE",
-                          style: GoogleFonts.oswald(
+                          style: GoogleFonts.roboto(
                             color: kPrimaryColor,
                             fontWeight: FontWeight.w900,
                             fontSize: 16.0,
@@ -51,7 +51,7 @@ class WebsiteAd extends StatelessWidget {
                         ),
                         Text(
                           "EVOLVING NAGA\nRESORT WEBSITE",
-                          style: GoogleFonts.oswald(
+                          style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                             height: 1.3,
@@ -113,7 +113,8 @@ class WebsiteAd extends StatelessWidget {
                                   ),
                                 ),
                                 height: 48.0,
-                                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 28.0),
                                 child: TextButton(
                                   onPressed: () {},
                                   child: const Center(

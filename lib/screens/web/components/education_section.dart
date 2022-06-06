@@ -56,7 +56,7 @@ class EducationSection extends StatelessWidget {
           children: [
             Text(
               "EDUCATION",
-              style: GoogleFonts.oswald(
+              style: GoogleFonts.roboto(
                 color: Colors.white,
                 fontWeight: FontWeight.w900,
                 fontSize: 30.0,
@@ -98,7 +98,7 @@ class EducationSection extends StatelessWidget {
                               children: [
                                 Text(
                                   education.period,
-                                  style: GoogleFonts.oswald(
+                                  style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20.0,

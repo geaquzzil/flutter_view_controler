@@ -7,25 +7,25 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 final List<FooterItem> footerItems = [
   FooterItem(
-    iconPath: "assets/mappin.png",
+    icon: const Icon(Icons.add_home_work, size: 25),
     title: "ADDRESS",
     text1: "999 Carter Street",
     text2: "Sailor Springs, IL 64234",
   ),
   FooterItem(
-    iconPath: "assets/phone.png",
+    icon: const Icon(Icons.phone, size: 25),
     title: "PHONE",
     text1: "+1 618-689-9604",
     text2: "+1 781-689-9632",
   ),
   FooterItem(
-    iconPath: "assets/email.png",
+    icon: const Icon(Icons.email, size: 25),
     title: "EMAIL",
     text1: "hello@example.com",
     text2: "info@flutterpanda.com",
   ),
   FooterItem(
-    iconPath: "assets/whatsapp.png",
+    icon: const Icon(Icons.whatsapp, size: 25),
     title: "WHATSAPP",
     text1: "+234 901-134-0095",
     text2: "+234 901-134-0095",
@@ -33,14 +33,14 @@ final List<FooterItem> footerItems = [
 ];
 
 class Footer extends StatelessWidget {
+  const Footer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ScreenHelper(
-        desktop: _buildUi(kDesktopMaxWidth, context),
-        tablet: _buildUi(kTabletMaxWidth, context),
-        mobile: _buildUi(getMobileMaxWidth(context), context),
-      ),
+    return ScreenHelper(
+      desktop: _buildUi(kDesktopMaxWidth, context),
+      tablet: _buildUi(kTabletMaxWidth, context),
+      mobile: _buildUi(getMobileMaxWidth(context), context),
     );
   }
 }
@@ -68,55 +68,50 @@ Widget _buildUi(double width, BuildContext context) {
                           width: ScreenHelper.isMobile(context)
                               ? constraints.maxWidth / 2.0 - 20.0
                               : constraints.maxWidth / 4.0 - 20.0,
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  footerItem.icon,
+                                  const SizedBox(
+                                    width: 15.0,
+                                  ),
+                                  Text(
+                                    footerItem.title,
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15.0,
+                              ),
+                              RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
                                   children: [
-                                    Image.asset(
-                                      footerItem.iconPath,
-                                      width: 25.0,
-                                    ),
-                                    const SizedBox(
-                                      width: 15.0,
-                                    ),
-                                    Text(
-                                      footerItem.title,
-                                      style: GoogleFonts.oswald(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
+                                    TextSpan(
+                                      text: "${footerItem.text1}\n",
+                                      style: const TextStyle(
+                                        color: kCaptionColor,
+                                        height: 1.8,
                                       ),
                                     ),
+                                    TextSpan(
+                                      text: "${footerItem.text2}\n",
+                                      style: const TextStyle(
+                                        color: kCaptionColor,
+                                      ),
+                                    )
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 15.0,
-                                ),
-                                RichText(
-                                  textAlign: TextAlign.start,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "${footerItem.text1}\n",
-                                        style: const TextStyle(
-                                          color: kCaptionColor,
-                                          height: 1.8,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "${footerItem.text2}\n",
-                                        style: const TextStyle(
-                                          color: kCaptionColor,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
                       )

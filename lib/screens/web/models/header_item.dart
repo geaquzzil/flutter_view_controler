@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/components/lists/list_page.dart';
+import 'package:flutter_view_controller/screens/web/models/tests/products.dart';
+import 'package:flutter_view_controller/screens/web/sign_in.dart';
 
 class HeaderItem {
   final String title;
-  Function(BuildContext context)? onClickAction;
-  VoidCallback? onTap;
   final bool isButton;
 
   HeaderItem({
     required this.title,
-    this.onTap,
-    this.onClickAction,
     this.isButton = false,
   });
+
+  void onHeaderItemClick(BuildContext context) {
+    if (title == "OUR PRODUCTS") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ListPage(
+            view_abstract: Product(),
+          ),
+        ),
+      );
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignIn(),
+      ),
+    );
+  }
 }

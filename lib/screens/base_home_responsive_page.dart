@@ -22,7 +22,7 @@ class _ResponsivePage extends State<ResponsivePage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (kIsWeb) {
-          return HomeWebPage();
+          return const HomeWebPage();
         } else if (SizeConfig.isMobile(context)) {
           return HomeMobilePage(drawerItems: widget.drawerItems);
         } else if (SizeConfig.isTablet(context)) {

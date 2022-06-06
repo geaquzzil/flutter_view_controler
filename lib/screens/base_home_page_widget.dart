@@ -28,15 +28,16 @@ class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
     // ));
     if (kIsWeb) {
       return MaterialApp(
+        theme: ThemeData(colorSchemeSeed: kPrimaryColor, useMaterial3: true),
         title: "Flutter Portfolio",
         debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.system,
         darkTheme: Theme.of(context).copyWith(
           platform: TargetPlatform.android,
           scaffoldBackgroundColor: kBackgroundColor,
           primaryColor: kPrimaryColor,
           canvasColor: kBackgroundColor,
-          textTheme: GoogleFonts.latoTextTheme(),
+          textTheme: GoogleFonts.robotoTextTheme(),
         ),
         builder: (context, widget) => ResponsiveWrapper.builder(
           ClampingScrollWrapper.builder(context, widget),
@@ -52,7 +53,7 @@ class BaseHomePage<T extends ViewAbstract> extends StatelessWidget {
             color: kBackgroundColor,
           ),
         ),
-        home: HomeWebPage(),
+        home: const HomeWebPage(),
       );
     }
     return MaterialApp(

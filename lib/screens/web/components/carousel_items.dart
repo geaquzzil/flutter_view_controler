@@ -14,7 +14,7 @@ List<CarouselItemModel> carouselItems = List.generate(
         children: [
           Text(
             "PRODUCT DESIGNER",
-            style: GoogleFonts.oswald(
+            style: GoogleFonts.roboto(
               color: kPrimaryColor,
               fontWeight: FontWeight.w900,
               fontSize: 16.0,
@@ -25,7 +25,7 @@ List<CarouselItemModel> carouselItems = List.generate(
           ),
           Text(
             "MICHELE\nHARRINGTON",
-            style: GoogleFonts.oswald(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontSize: 40.0,
               fontWeight: FontWeight.w900,

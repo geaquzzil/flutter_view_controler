@@ -48,7 +48,7 @@ class PortfolioStats extends StatelessWidget {
                     children: [
                       Text(
                         stat.count,
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w700,
                           fontSize: 32.0,
                           color: Colors.white,

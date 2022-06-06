@@ -48,7 +48,7 @@ Widget _buildUi(double width) {
             children: [
               Text(
                 "TESTIMONIALS",
-                style: GoogleFonts.oswald(
+                style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                   fontSize: 30.0,
@@ -136,7 +136,7 @@ Widget _buildUi(double width) {
                                 children: [
                                   Text(
                                     testimonial.personName,
-                                    style: GoogleFonts.oswald(
+                                    style: GoogleFonts.roboto(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 16.0,

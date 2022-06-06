@@ -50,6 +50,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
               r'getSubtitleHeaderText': 1,
               r'getHeaderText': 1,
               r'getLabelText': 1,
+              r'iD': 0,
+              r'iD=': 1,
               r'getCustomAction': 0,
               r'requireObjects': 0,
               r'requireObjectsList': 0,
@@ -64,8 +66,10 @@ final _data = <r.Reflectable, r.ReflectorData>{
               r'listCall': 4,
               r'getHttp': 0,
               r'getBodyCurrentAction': 1,
-              r'iD': 0,
-              r'iD=': 1,
+              r'onCardClicked': 1,
+              r'getCardListView': 1,
+              r'onDrawerItemClicked': 1,
+              r'getDrawerListTitle': 1,
               r'getTableNameApi': 0,
               r'fromJsonViewAbstract': 1,
               r'toJsonViewAbstract': 0
@@ -98,6 +102,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
               r'getSubtitleHeaderText': 1,
               r'getHeaderText': 1,
               r'getLabelText': 1,
+              r'iD': 0,
+              r'iD=': 1,
               r'getCustomAction': 0,
               r'requireObjects': 0,
               r'requireObjectsList': 0,
@@ -111,9 +117,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
               r'addCall': 2,
               r'listCall': 4,
               r'getHttp': 0,
-              r'getBodyCurrentAction': 1,
-              r'iD': 0,
-              r'iD=': 1
+              r'getBodyCurrentAction': 1
             },
             (o) => false,
             null,
@@ -138,6 +142,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             instance.getSubtitleHeaderText,
         r'getHeaderText': (dynamic instance) => instance.getHeaderText,
         r'getLabelText': (dynamic instance) => instance.getLabelText,
+        r'iD': (dynamic instance) => instance.iD,
         r'getCustomAction': (dynamic instance) => instance.getCustomAction,
         r'requireObjects': (dynamic instance) => instance.requireObjects,
         r'requireObjectsList': (dynamic instance) =>
@@ -157,7 +162,12 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r'getHttp': (dynamic instance) => instance.getHttp,
         r'getBodyCurrentAction': (dynamic instance) =>
             instance.getBodyCurrentAction,
-        r'iD': (dynamic instance) => instance.iD,
+        r'onCardClicked': (dynamic instance) => instance.onCardClicked,
+        r'getCardListView': (dynamic instance) => instance.getCardListView,
+        r'onDrawerItemClicked': (dynamic instance) =>
+            instance.onDrawerItemClicked,
+        r'getDrawerListTitle': (dynamic instance) =>
+            instance.getDrawerListTitle,
         r'getTableNameApi': (dynamic instance) => instance.getTableNameApi,
         r'fromJsonViewAbstract': (dynamic instance) =>
             instance.fromJsonViewAbstract,
@@ -186,7 +196,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
       ])
 };
 
-const _memberSymbolMap = null;
+final _memberSymbolMap = null;
 
 void initializeReflectable() {
   r.data = _data;
