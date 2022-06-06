@@ -33,6 +33,8 @@ final List<DesignProcess> designProcesses = [
 ];
 
 class CvSection extends StatelessWidget {
+  const CvSection({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

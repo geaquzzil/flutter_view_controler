@@ -171,7 +171,7 @@ class Header extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           HeaderLogo(),
-          HeaderRow(),
+           HeaderRow(),
         ],
       ),
     );
