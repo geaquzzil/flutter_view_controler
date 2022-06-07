@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:flutter_view_controller/components/small_screens/ext/bottom_navigation_page.dart';
+import 'package:flutter_view_controller/screens/mobile_screens/bottom_navigation_page.dart';
 
 import '../../models/view_abstract.dart';
 import '../../view_generator_helper.dart';

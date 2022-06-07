@@ -31,7 +31,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
           textBuilder: DefaultLoadMoreTextBuilder.english,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
-              return list[index].getCardListView(context);
+              return list[index].getCardView(context);
             },
             itemCount: count,
           ),

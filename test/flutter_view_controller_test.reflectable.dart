@@ -136,7 +136,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         r'hashCode': (dynamic instance) => instance.hashCode,
         r'runtimeType': (dynamic instance) => instance.runtimeType,
         r'getCardLeadingImage': (dynamic instance) =>
-            instance.getCardLeadingImage,
+            instance.getCardLeadingImageProvider,
         r'getIcon': (dynamic instance) => instance.getIcon,
         r'getSubtitleHeaderText': (dynamic instance) =>
             instance.getSubtitleHeaderText,

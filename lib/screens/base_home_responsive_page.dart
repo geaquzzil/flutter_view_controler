@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_view_controller/components/large_screens/home_large_tablet.dart';
-import 'package:flutter_view_controller/components/small_screens/home_mobile_page.dart';
-import 'package:flutter_view_controller/components/small_tablets_screens/home_small_tablet_page.dart';
+import 'package:flutter_view_controller/screens/large_tablet_screens/home_large_tablet.dart';
+import 'package:flutter_view_controller/screens/mobile_screens/home_mobile_page.dart';
+import 'package:flutter_view_controller/screens/small_tablet_screens/home_small_tablet_page.dart';
 import 'package:flutter_view_controller/screens/web/home.dart';
 import 'package:flutter_view_controller/size_config.dart';
 

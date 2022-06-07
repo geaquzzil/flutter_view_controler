@@ -1,5 +1,5 @@
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_view_controller/components/lists/list_page.dart';
+import 'package:flutter_view_controller/screens/action_screens/list_page.dart';
 import 'package:flutter_view_controller/screens/web/base.dart';
 import 'package:flutter_view_controller/screens/web/models/tests/products.dart';
 

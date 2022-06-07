@@ -44,7 +44,7 @@ class Product extends ViewAbstract<Product> {
   }
 
   @override
-  ImageProvider? getCardLeadingImage(BuildContext context) {
+  ImageProvider? getCardLeadingImageProvider(BuildContext context) {
     return null;
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/components/normal_card.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
 import 'package:flutter_view_controller/screens/action_screens/view_details_page.dart';
 
@@ -17,21 +18,8 @@ abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
     );
   }
 
-  Widget getCardListView(BuildContext context) {
-    return InkWell(
-      onTap: () => onCardClicked(context),
-      child: Card(
-        child: ListTile(
-          title: (getHeaderText(context)),
-          subtitle: (getSubtitleHeaderText(context)),
-          leading: CircleAvatar(
-            radius: 28,
-            backgroundImage: getCardLeadingImage(context),
-          ),
-          // trailing: getTrailing(context),
-        ),
-      ),
-    );
+  Widget getCardView(BuildContext context) {
+    return NormalCard(object: this as ViewAbstract);
   }
 
   void onDrawerItemClicked(BuildContext context) {

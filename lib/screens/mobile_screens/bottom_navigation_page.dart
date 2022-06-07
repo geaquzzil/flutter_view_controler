@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_view_controller/screens/action_screens/list_page.dart';
 
-import '../../../models/view_abstract.dart';
-import '../../lists/list_page.dart';
+import '../../models/view_abstract.dart';
 
 class NavigationPage<T extends ViewAbstract> extends StatefulWidget {
   final T view_abstract;
