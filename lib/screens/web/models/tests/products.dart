@@ -26,13 +26,13 @@ class Product extends ViewAbstract<Product> {
 
   @override
   Icon getIcon(BuildContext context) {
-    return Icon(Icons.add_card_rounded);
+    return const Icon(Icons.add_card_rounded);
   }
 
   @override
   Text getSubtitleHeaderText(BuildContext context) {
     return Text(
-        "pending_reservation_invoice    ${pending_reservation_invoice}");
+        "pending_reservation_invoice    $pending_reservation_invoice");
   }
 
   @override

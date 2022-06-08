@@ -5,12 +5,9 @@ import 'package:flutter_view_controller/components/normal_card_view.dart';
 import 'package:flutter_view_controller/screens/action_screens/base_actions_page.dart';
 
 import '../../components/main_body.dart';
-import '../../components/primary_button.dart';
-import '../../components/rounded_icon_button.dart';
 import '../../models/view_abstract.dart';
 import '../../size_config.dart';
 
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_view_controller/constants.dart';
 
 class ViewDetailsPage<T extends ViewAbstract> extends BaseActionPage {

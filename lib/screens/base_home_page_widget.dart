@@ -1,10 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_view_controller/constants.dart';
-import 'package:flutter_view_controller/screens/web/home.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import '../app_theme.dart';
 import '../models/view_abstract.dart';

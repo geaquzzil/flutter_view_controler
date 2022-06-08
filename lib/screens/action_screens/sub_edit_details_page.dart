@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SubEditDetailsPage extends StatefulWidget {
-  SubEditDetailsPage({Key? key}) : super(key: key);
+  const SubEditDetailsPage({Key? key}) : super(key: key);
 
   @override
   State<SubEditDetailsPage> createState() => _SubEditDetailsPageState();

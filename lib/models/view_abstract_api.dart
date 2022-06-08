@@ -9,17 +9,16 @@ import 'package:reflectable/reflectable.dart';
 
 import 'servers/server_helpers.dart';
 
-// Annotate with this class to enable reflection.
+@GlobalQuantifyCapability(r"^.(SomeClass|SomeEnum)", reflector)
 class Reflector extends Reflectable {
   const Reflector()
-      : super(invokingCapability); // Request the capability to invoke methods.
+      : super(invokingCapability, declarationsCapability,
+            typeRelationsCapability);
 }
 
 const reflector = Reflector();
 
-@reflector
 abstract class ViewAbstractApi<T> extends ViewAbstractBase<T> {
-
   T fromJsonViewAbstract(Map<String, dynamic> json);
   Map<String, dynamic> toJsonViewAbstract();
 

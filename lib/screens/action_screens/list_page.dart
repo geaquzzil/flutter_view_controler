@@ -19,8 +19,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: SizeConfig.screenHeight,
+      height: double.maxFinite,
       child: RefreshIndicator(
         onRefresh: _refresh,
         child: LoadMore(
@@ -30,6 +29,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
           delegate: const DefaultLoadMoreDelegate(),
           textBuilder: DefaultLoadMoreTextBuilder.english,
           child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return list[index].getCardView(context);
             },
