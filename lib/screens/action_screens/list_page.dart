@@ -16,6 +16,7 @@ class _ListPageState<T extends ViewAbstract> extends State<ListPage> {
   late List<T> list = [];
   int get count => list.length;
   int page = 0;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
