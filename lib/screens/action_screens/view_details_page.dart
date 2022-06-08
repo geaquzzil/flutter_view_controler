@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_view_controller/components/cart_button.dart';
+import 'package:flutter_view_controller/components/normal_card_view.dart';
 import 'package:flutter_view_controller/screens/action_screens/base_actions_page.dart';
 
 import '../../components/main_body.dart';
@@ -66,6 +67,24 @@ class ViewDetailsPage<T extends ViewAbstract> extends BaseActionPage {
   //     body: _body(),
   //   );
   // }
+
+  Expanded getBody(BuildContext context) {
+    List<String> fields = getFields();
+    return Expanded(
+        child: ListView.builder(
+            itemCount: fields.length,
+            itemBuilder: (BuildContext context, int index) {         
+              String label= fields[index];
+              dynamic fieldValue=object.getFieldValue(label);
+              
+              if(fieldValue is ViewAbstract){
+   return NormalCardView(title: object.getFie, description: description, icon: icon)
+              }else{
+   return NormalCardView(title: object.getFie, description: description, icon: icon)
+              }
+           
+            }));
+  }
 
   SizedBox _body() {
     return SizedBox(

@@ -24,6 +24,7 @@ abstract class BaseActionPage<T extends ViewAbstract> extends StatelessWidget {
         bottomNavigationBar: getBottomNavigationBar(context),
         body: getBodyActionView(context));
   }
+
   Row getTitle(BuildContext context) {
     return Row(
       children: [
@@ -40,5 +41,9 @@ abstract class BaseActionPage<T extends ViewAbstract> extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  List<String> getFields() {
+    return object.getFields();
   }
 }

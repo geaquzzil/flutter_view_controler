@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_view_controller/components/normal_card.dart';
+import 'package:flutter_view_controller/components/normal_card_list.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
 import 'package:flutter_view_controller/screens/action_screens/view_details_page.dart';
 
 import 'view_abstract_api.dart';
 
 abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
+  void onCardTrailingClickedView(BuildContext context) {
+    onCardTrailingClicked(context);
+  }
+
   void onCardTrailingClicked(BuildContext context) {
     print("onCardTrailingClicked");
   }
 
+  void onCardLongClickedView(BuildContext context) {
+    onCardClicked(context);
+  }
+
   void onCardLongClicked(BuildContext context) {
     print("onCardLongClicked");
+  }
+
+  void onCardClickedView(BuildContext context) {
+    onCardClicked(context);
   }
 
   void onCardClicked(BuildContext context) {
@@ -27,7 +39,7 @@ abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
   }
 
   Widget getCardView(BuildContext context) {
-    return NormalCard(object: this as ViewAbstract);
+    return NormalCardList(object: this as ViewAbstract);
   }
 
   void onDrawerItemClicked(BuildContext context) {

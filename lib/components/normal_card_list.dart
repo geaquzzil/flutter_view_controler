@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
 
-class NormalCard<T extends ViewAbstract> extends StatelessWidget {
+class NormalCardList<T extends ViewAbstract> extends StatelessWidget {
   final T object;
-  const NormalCard({
+  const NormalCardList({
     Key? key,
     required this.object,
   }) : super(key: key);

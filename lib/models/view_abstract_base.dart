@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_view_controller/constants.dart';
+import 'package:reflectable/mirrors.dart';
+
+import 'view_abstract_api.dart';
 
 abstract class ViewAbstractBase<T> {
+  List<String> getFields();
+  String? getFieldLabel(String label, BuildContext context);
+  Icons? getFieldIcon(String label, BuildContext context);
+  
   String iD = "-1";
 
   Color getColor(BuildContext context) => Colors.red;
@@ -28,6 +35,10 @@ abstract class ViewAbstractBase<T> {
   }
 
   ImageProvider? getCardLeadingImageProvider(BuildContext context) {
+    return null;
+  }
+
+  IconData? getIconData(BuildContext context) {
     return null;
   }
 
@@ -67,6 +78,16 @@ abstract class ViewAbstractBase<T> {
 
   List<Widget>? getPopupActionsList(BuildContext context) => null;
 
-  String? getFieldLabel(String label, BuildContext context) => null;
-  Icons? getFieldIcon(String label, BuildContext context) => null;
+  InstanceMirror getInstanceMirror() {
+    return reflector.reflect(this);
+  }
+
+  dynamic? getFieldValue(String label) {
+    return getInstanceMirror().invokeGetter(label);
+  }
+
+  void setFieldValue(String label, Object value) {
+    // set the value
+    getInstanceMirror().invokeSetter(label, value);
+  }
 }
