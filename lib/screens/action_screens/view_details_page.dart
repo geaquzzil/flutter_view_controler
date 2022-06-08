@@ -73,16 +73,21 @@ class ViewDetailsPage<T extends ViewAbstract> extends BaseActionPage {
     return Expanded(
         child: ListView.builder(
             itemCount: fields.length,
-            itemBuilder: (BuildContext context, int index) {         
-              String label= fields[index];
-              dynamic fieldValue=object.getFieldValue(label);
-              
-              if(fieldValue is ViewAbstract){
-   return NormalCardView(title: object.getFie, description: description, icon: icon)
-              }else{
-   return NormalCardView(title: object.getFie, description: description, icon: icon)
+            itemBuilder: (BuildContext context, int index) {
+              String label = fields[index];
+              dynamic fieldValue = object.getFieldValue(label);
+              if (fieldValue is ViewAbstract) {
+                return NormalCardView(
+                    title: "",
+                    description: "",
+                    icon: Icons.abc,
+                    object: fieldValue);
+              } else {
+                return NormalCardView(
+                    title: object.getFieldLabel(label, context),
+                    description: fieldValue,
+                    icon: object.getIconDataField(label, context));
               }
-           
             }));
   }
 

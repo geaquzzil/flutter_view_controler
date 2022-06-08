@@ -6,9 +6,18 @@ import 'view_abstract_api.dart';
 
 abstract class ViewAbstractBase<T> {
   List<String> getFields();
-  String? getFieldLabel(String label, BuildContext context);
-  Icons? getFieldIcon(String label, BuildContext context);
-  
+  String getFieldLabel(String label, BuildContext context);
+  IconData getIconData(BuildContext context);
+  IconData getIconDataField(String label, BuildContext context);
+
+  Icon getFieldIcon(String label, BuildContext context) {
+    return Icon(getIconDataField(label, context));
+  }
+
+  Icon getIcon(BuildContext context) {
+    return Icon(getIconData(context));
+  }
+
   String iD = "-1";
 
   Color getColor(BuildContext context) => Colors.red;
@@ -35,14 +44,6 @@ abstract class ViewAbstractBase<T> {
   }
 
   ImageProvider? getCardLeadingImageProvider(BuildContext context) {
-    return null;
-  }
-
-  IconData? getIconData(BuildContext context) {
-    return null;
-  }
-
-  Icon? getIcon(BuildContext context) {
     return null;
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_view_controller/models/view_abstract.dart';
+import 'package:flutter_view_controller/models/view_abstract_api.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'sizes.dart';
@@ -8,6 +9,7 @@ import 'sizes.dart';
 part 'products.g.dart';
 
 @JsonSerializable(explicitToJson: true)
+@reflector
 class Product extends ViewAbstract<Product> {
   String? thisIsATest;
 
@@ -23,7 +25,7 @@ class Product extends ViewAbstract<Product> {
   Product() : super();
 
   @override
-  Icon? getIcon(BuildContext context) {
+  Icon getIcon(BuildContext context) {
     return Icon(Icons.add_card_rounded);
   }
 
@@ -70,4 +72,44 @@ class Product extends ViewAbstract<Product> {
       _$ProductFromJson(data);
 
   Map<String, dynamic> toJson() => _$ProductToJson(this);
+
+  @override
+  String getFieldLabel(String label, BuildContext context) {
+    // TODO: implement getFieldLabel
+    return label;
+  }
+
+  @override
+  List<String> getFields() {
+    // TODO: implement getFields
+    return [
+      "id",
+      "sizes",
+      "comments",
+      "barcode",
+      "products_count",
+      "pending_reservation_invoice",
+      "cut_request_quantity"
+    ];
+  }
+
+  @override
+  IconData getIconData(BuildContext context) {
+    // TODO: implement getIconData
+    return Icons.account_balance_wallet_sharp;
+  }
+
+  @override
+  IconData getIconDataField(String label, BuildContext context) {
+    // TODO: implement getIconDataField
+    switch (label) {
+      case "id":
+        return Icons.account_balance_wallet_sharp;
+      case "sizes":
+        return Icons.sanitizer;
+      case "comments":
+        return Icons.comment;
+    }
+    return Icons.account_balance_wallet_sharp;
+  }
 }
