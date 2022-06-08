@@ -6,6 +6,10 @@ abstract class ViewAbstractBase<T> {
 
   Color getColor(BuildContext context) => Colors.red;
 
+  Widget? getCardTrailing(BuildContext context) {
+    return const Icon(Icons.more_vert_outlined);
+  }
+
   Widget getCardLeading(BuildContext context) {
     return CircleAvatar(
       radius: 28,
@@ -56,4 +60,13 @@ abstract class ViewAbstractBase<T> {
   String? getLabelTextOnly(BuildContext context) {
     return "null";
   }
+
+  List<Widget>? getAppBarActionsEdit(BuildContext context) => null;
+
+  List<Widget>? getAppBarActionsView(BuildContext context) => null;
+
+  List<Widget>? getPopupActionsList(BuildContext context) => null;
+
+  String? getFieldLabel(String label, BuildContext context) => null;
+  Icons? getFieldIcon(String label, BuildContext context) => null;
 }

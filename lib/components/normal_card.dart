@@ -10,16 +10,15 @@ class NormalCard<T extends ViewAbstract> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return ListTile(
       onTap: () => object.onCardClicked(context),
-      child: Card(
-        child: ListTile(
-          title: (object.getHeaderText(context)),
-          subtitle: (object.getSubtitleHeaderText(context)),
-          leading: object.getCardLeading(context),
-          // trailing: getTrailing(context),
-        ),
-      ),
+      onLongPress: () => object.onCardLongClicked(context),
+      title: (object.getHeaderText(context)),
+      subtitle: (object.getSubtitleHeaderText(context)),
+      leading: object.getCardLeading(context),
+      trailing: InkWell(
+          onTap: () => object.onCardTrailingClicked(context),
+          child: object.getCardTrailing(context)),
     );
   }
 }

@@ -6,6 +6,14 @@ import 'package:flutter_view_controller/screens/action_screens/view_details_page
 import 'view_abstract_api.dart';
 
 abstract class ViewAbstractGenerator<T> extends ViewAbstractApi<T> {
+  void onCardTrailingClicked(BuildContext context) {
+    print("onCardTrailingClicked");
+  }
+
+  void onCardLongClicked(BuildContext context) {
+    print("onCardLongClicked");
+  }
+
   void onCardClicked(BuildContext context) {
     print("Card Clicked");
     Navigator.push(
